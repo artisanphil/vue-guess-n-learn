@@ -1,9 +1,11 @@
 <template>
     <h1 class="text-center text-xl mt-4">Please choose a character for the computer to guess</h1>
-    <main class="container px-8 pt-24 mx-auto lg:px-4">
+    <main class="container px-8 pt-2 mx-auto lg:px-4">
     <div class="flex flex-wrap">
       <div class="px-8 py-6 lg:w-1/3 md:w-full" :key="index" v-for="(object, index) in objects">
-        {{ object.name }}
+        <a @click="select(object.name)">{{ object.name }}</a>
+        <br>
+        {{ object.attributes }}
        </div>
     </div>
   </main>
@@ -12,7 +14,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { IObject } from '../interfaces/IObject';
-import { http } from '../helpers/http';
+import { get, post } from '../helpers/http';
 
 @Options({
   props: {
@@ -24,30 +26,17 @@ export default class ListObjects extends Vue {
   private objects: IObject[] = [];
 
   async created() {
-    const data = await http<IObject[]>(
-      "http://localhost/api/index"
+    const data = await get<IObject[]>(
+      "/api/index"
     );
 
     this.objects = data;
-    //console.log(data[0].name);
+  }
+
+  public select(name: string): void {
+    const data = { selection: name };
+
+     post('/api/select', data);
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
