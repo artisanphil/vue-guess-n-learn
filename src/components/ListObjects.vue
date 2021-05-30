@@ -9,19 +9,29 @@
        </div>
     </div>
   </main>
+  <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Options, Vue  } from 'vue-class-component';
+import ConfirmDialogue from '../components/ConfirmDialogue.vue'
 import { IObject } from '../interfaces/IObject';
 import { get, post } from '../helpers/http';
 
 @Options({
   props: {
     msg: String
-  }
+  },
+  components: {
+    ConfirmDialogue,
+  },
 })
 export default class ListObjects extends Vue {
+
+  $refs!: {
+    confirmDialogue: InstanceType<typeof ConfirmDialogue>;
+};
+
   msg!: string
   private objects: IObject[] = [];
 
@@ -36,7 +46,15 @@ export default class ListObjects extends Vue {
   public select(name: string): void {
     const data = { selection: name };
 
-     post('/api/select', data);
+    const ok = this.$refs.confirmDialogue.show({
+        title: 'Your selection',
+        message: 'You have selected ' + name,
+        okButton: 'OK',
+    })
+
+    if (ok) {
+        post('/api/select', data);
+    }
   }
 }
 </script>
