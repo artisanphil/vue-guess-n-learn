@@ -1,12 +1,41 @@
+
 <template>
-    <popup-modal ref="popup">
-        <h2 style="margin-top: 0">{{ title }}</h2>
-        <p>{{ message }}</p>
-        <div class="btns">
-            <button class="cancel-btn" @click="_cancel">{{ cancelButton }}</button>
-            <span class="ok-btn" @click="_confirm">{{ okButton }}</span>
+<popup-modal ref="popup">
+  <div>
+      <div class="relative w-auto my-6 mx-auto max-w-sm">
+        <!--content-->
+        <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <!--header-->
+          <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+            <h3 class="text-2xl font-semibold">
+              {{ title }}
+            </h3>
+            <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" v-on:click="toggleModal()">
+              <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                ×
+              </span>
+            </button>
+          </div>
+          <!--body-->
+          <div class="relative p-6 flex-auto">
+            <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+                {{ message }}
+            </p>
+          </div>
+          <!--footer-->
+          <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+            <button @click="_cancel" class="text-black-500 bg-transparent font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+              Cancel
+            </button>
+            <button @click="_confirm" class="text-black-500 border border-solid border-black-500 bg-gray-300 hover:text-white active:bg-black-600 font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+              OK
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
     </popup-modal>
+    <div v-if="isVisible" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
 </template>
 
 <script>
@@ -61,31 +90,3 @@ export default {
 }
 </script>
 
-<!-- components/ConfirmDialogue.vue -->
-
-<style scoped>
-.btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.ok-btn {
-    color: red;
-    text-decoration: underline;
-    line-height: 2.5rem;
-    cursor: pointer;
-}
-
-.cancel-btn {
-    padding: 0.5em 1em;
-    background-color: #d5eae7;
-    color: #35907f;
-    border: 2px solid #0ec5a4;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 16px;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-</style>
