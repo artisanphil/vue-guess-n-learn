@@ -10,7 +10,7 @@
             <h3 class="text-2xl font-semibold">
               {{ title }}
             </h3>
-            <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" v-on:click="toggleModal()">
+            <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
               <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                 ×
               </span>
@@ -24,11 +24,11 @@
           </div>
           <!--footer-->
           <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-            <button @click="_cancel" class="text-black-500 bg-transparent font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
-              Cancel
+            <button @click="_cancel" class="text-black-500 bg-transparent font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+              {{ cancelButton }}
             </button>
-            <button @click="_confirm" class="text-black-500 border border-solid border-black-500 bg-gray-300 hover:text-white active:bg-black-600 font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
-              OK
+            <button @click="_confirm" class="text-black-500 border border-solid border-black-500 bg-gray-300 hover:text-white active:bg-black-600 font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+              {{ okButton }}
             </button>
           </div>
         </div>
@@ -50,8 +50,8 @@ export default {
         // Parameters that change depending on the type of dialogue
         title: undefined,
         message: undefined, // Main text content
-        okButton: undefined, // Text for confirm button; leave it empty because we don't know what we're using it for
-        cancelButton: 'Go Back', // text for cancel button
+        okButton: 'OK', // Text for confirm button; leave it empty because we don't know what we're using it for
+        cancelButton: 'Cancel', // text for cancel button
 
         // Private variables
         resolvePromise: undefined,
