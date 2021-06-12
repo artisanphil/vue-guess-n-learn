@@ -68,7 +68,27 @@ export default class ListObjects extends Vue {
     if (ok) {
         post('/api/select', data);
         this.yourSelection = this.objects[index];
+        this.guess();
     }
+  }
+
+  async guess(): Promise<void> {
+    let question = await get<any>(
+      "/api/computer-guess"
+    );
+
+    const ok = await this.$refs.confirmDialogue.show({
+        title: 'Computer Guess',
+        message: question.sentence,
+        okButton: 'OK',
+    })
+
+    /*
+    if (ok) {
+        post('/api/select', data);
+        this.yourSelection = this.objects[index];
+    }
+    */
   }
 }
 </script>
