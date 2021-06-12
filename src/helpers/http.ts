@@ -3,6 +3,7 @@ export async function get<T>(
   ): Promise<T> {
     const response = await fetch(process.env.VUE_APP_BACKEND + request);
     const body = await response.json();
+
     return body;
   }
 
