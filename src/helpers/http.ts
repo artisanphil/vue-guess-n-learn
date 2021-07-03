@@ -16,8 +16,9 @@ export async function get<T>(
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Request-Headers': '*',
-        'Access-Control-Request-Method': '*'
+        'Access-Control-Request-Method': '*',
       },
+      credentials: 'include',
       body: JSON.stringify(body)
     });
 
