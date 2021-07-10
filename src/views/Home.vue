@@ -77,19 +77,35 @@ export default class ListObjects extends Vue {
     }
   }
 
-  async guess(): Promise<void> {
-    let question = await get<IComputerGuess>("/api/computer-guess");
+  async guess(sentence?: string, computerChoice?: string): Promise<void> {
+
+    let message = "";
+
+   //@todo needs to be refactored
+    if (sentence == null) {
+      let question = await get<IComputerGuess>("/api/computer-guess");
+      sentence = question.sentence;
+      message = sentence;
+      computerChoice = question.choice;
+    }
+    else {
+      //@todo use tailwind
+      let wrong = "<span style=\"color:red;\">Wrong!</span><br />";
+      message = wrong + sentence;
+    }
 
     const answer = await this.$refs.confirmDialogue.show({
       title: "Computer Guess",
-      message: question.sentence,
+      message: message,
       okButton: "Yes",
       cancelButton: "No",
     });
 
-    if (answer) {
-      const data = { correct: answer, choice: question.choice };
-      let response = await post<any>("/api/computer-guess", data);
+    const data = { correct: answer, choice: computerChoice };
+    let response = await post<any>("/api/computer-guess", data);
+
+    if(answer !== response.correct) {
+      this.guess(sentence, computerChoice);
     }
   }
 }
