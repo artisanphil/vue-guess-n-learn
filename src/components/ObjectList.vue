@@ -13,15 +13,10 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Vue } from 'vue-class-component';
 import { IObject } from "../interfaces/IObject";
 import { get } from "../helpers/http";
 
-@Options({
-  props: {
-    msg: String
-  },
-})
 export default class ObjectList extends Vue {
 
   protected objects: Array<IObject> = [];

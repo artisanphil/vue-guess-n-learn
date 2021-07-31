@@ -1,19 +1,22 @@
 <template>
-  <h1 class="text-center text-xl mt-4">
-    Please choose a character for the computer to guess
-  </h1>
-  <main class="container px-8 pt-2 mx-auto lg:px-4">
-    <div class="flex">
-      <ObjectList @messageFromChild="objectSelected" />
-      <div class="flex-auto lg:w-1/5">
-        <h3 class="text-lg">Your character</h3>
-        <div id="your-selection">
-          {{ yourSelection }}
+ <div id=home class="absolute" style="z-Index: -10;">
+    <h1 class="text-center text-xl mt-4">
+      Please choose a character for the computer to guess
+    </h1>
+    <main class="container px-8 pt-2 mx-auto lg:px-4">
+      <div class="flex">
+        <ObjectList @messageFromChild="objectSelected" />
+        <div class="flex-auto lg:w-1/5">
+          <h3 class="text-lg">Your character</h3>
+          <div id="your-selection">
+            {{ yourSelection }}
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
   <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
+  <div id=attribute-selection class="z-10 border border-grey-600 bg-white w-9/10 w-auto mx-5 h-screen my-5">Test</div>
 </template>
 
 <script lang="ts">
