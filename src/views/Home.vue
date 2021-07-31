@@ -1,22 +1,19 @@
 <template>
- <div id=home class="absolute" style="z-Index: -10;">
-    <h1 class="text-center text-xl mt-4">
-      Please choose a character for the computer to guess
-    </h1>
-    <main class="container px-8 pt-2 mx-auto lg:px-4">
-      <div class="flex">
-        <ObjectList @messageFromChild="objectSelected" />
-        <div class="flex-auto lg:w-1/5">
-          <h3 class="text-lg">Your character</h3>
-          <div id="your-selection">
-            {{ yourSelection }}
-          </div>
+  <h1 class="text-center text-xl mt-4">
+    Please choose a character for the computer to guess
+  </h1>
+  <main class="container px-8 pt-2 mx-auto lg:px-4">
+    <div class="flex">
+      <ObjectList @messageFromChild="objectSelected" />
+      <div class="flex-auto lg:w-1/5">
+        <h3 class="text-lg">Your character</h3>
+        <div id="your-selection">
+          {{ yourSelection }}
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
   <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
-  <div id=attribute-selection class="z-10 border border-grey-600 bg-white w-9/10 w-auto mx-5 h-screen my-5">Test</div>
 </template>
 
 <script lang="ts">
@@ -26,11 +23,9 @@ import ConfirmDialogue from "../components/ConfirmDialogue.vue";
 import { IComputerGuess } from "../interfaces/IComputerGuess";
 import { IObject } from "../interfaces/IObject";
 import { get, post } from "../helpers/http";
+import router from '../router';
 
 @Options({
-  props: {
-    msg: String,
-  },
   data: () => {
     return {
       yourSelection: "",
@@ -47,7 +42,6 @@ export default class Home extends Vue {
     confirmDialogue: InstanceType<typeof ConfirmDialogue>;
   };
 
-  msg!: string;
   protected yourSelection: IObject = {} as IObject;
 
   async objectSelected(objects: Array<IObject>, index: number): Promise<void> {
@@ -95,8 +89,10 @@ export default class Home extends Vue {
     let response = await post<any>("/api/computer-guess", data);
 
     if(answer !== response.correct) {
-      this.guess(sentence, computerChoice);
+      return this.guess(sentence, computerChoice);
     }
+
+    router.push('guess');
   }
 }
 </script>
