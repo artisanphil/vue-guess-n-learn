@@ -92,7 +92,7 @@ export default class Home extends Vue {
       return this.guess(sentence, computerChoice);
     }
 
-    router.push('guess');
+    router.push('pick-attribute');
   }
 }
 </script>
