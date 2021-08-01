@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
-import Guess from '../views/Guess.vue'
+import PickAttribute from '../views/PickAttribute.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,9 +17,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/guess',
-    name: 'Guess',
-    component: Guess
+    path: '/pick-attribute',
+    name: 'Pick Attribute',
+    component: PickAttribute
   }
 ]
 
