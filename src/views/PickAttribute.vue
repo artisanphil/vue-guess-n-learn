@@ -1,25 +1,47 @@
 <template>
   <main class="container px-8 pt-2 mx-auto lg:px-4">
     <div class="flex">
-      <AttributeList @messageFromChild="attributeSelected" />
+      <AttributeList v-show="displayAttributes" @messageFromChild="attributeSelected" />
+      <MultipleChoice v-show="displayMChoice" :questions="questions" />
     </div>
   </main>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { defineComponent } from "vue";
 import AttributeList from "../components/AttributeList.vue";
+import MultipleChoice from "../components/MultipleChoice.vue";
 
-@Options({
+export default defineComponent({
+	name: "PickAttribute",
+	data() {
+		return {
+			displayAttributes: true,
+      displayMChoice: false,
+      questions: []
+		};
+	},
   components: {
     AttributeList,
+    MultipleChoice
   },
-})
-export default class PickAttribute extends Vue {
+	methods: {
+      async attributeSelected(attributes: Array<string>, index: number): Promise<void> {
+        let attribute = attributes[index];
+        console.log(attribute);
+        this.displayAttributes = false;
 
-  async attributeSelected(attributes: Array<string>, index: number): Promise<void> {
-    let attribute = attributes[index];
-    console.log(attribute);
-  }
-}
+        let url = `/api/user-guess?choice=${attribute}`;
+        let response = await fetch(process.env.VUE_APP_BACKEND + url);
+        let questionType = await response.headers.get('Question-Type');
+        this.questions = await response.json();
+
+        switch(questionType) {
+          case 'multiple-choice':
+            this.displayMChoice = true;
+            break;
+        }
+    }
+	},
+});
 </script>
