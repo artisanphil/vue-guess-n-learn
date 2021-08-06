@@ -1,11 +1,12 @@
 <template>
 <div class="flex flex-wrap lg:w-4/5">
         <div
-          class="px-8 py-6 lg:w-1/3 md:w-full"
+          class="px-8 py-6 lg:w-1/3 md:w-full border hover:shadow-lg cursor-pointer"
           :key="index"
           v-for="(object, index) in objects"
+          @click="select(index)"
         >
-          <a @click="select(index)">{{ object.name }}</a>
+          {{ object.name }}
           <br />
           {{ object.attributes }}
         </div>
