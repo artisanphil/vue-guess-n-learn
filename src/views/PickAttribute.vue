@@ -2,7 +2,7 @@
   <main class="container px-8 pt-2 mx-auto lg:px-4">
     <div class="flex">
       <AttributeList v-show="displayAttributes" @messageFromChild="attributeSelected" />
-      <MultipleChoice v-show="displayMChoice" :questions="questions" :attribute="attribute" />
+      <MultipleChoice v-show="displayMChoice" :questions="questions" :attribute="attribute" @messageFromChild="questionSelected" />
     </div>
   </main>
 </template>
@@ -11,6 +11,8 @@
 import { defineComponent } from "vue";
 import AttributeList from "../components/AttributeList.vue";
 import MultipleChoice from "../components/MultipleChoice.vue";
+import { post } from "../helpers/http";
+import Swal from 'sweetalert2'
 
 export default defineComponent({
 	name: "PickAttribute",
@@ -41,6 +43,18 @@ export default defineComponent({
             this.displayMChoice = true;
             break;
         }
+    },
+    async questionSelected(data: any): Promise<void> {
+      console.log(data);
+      let response = await post<any>("/api/user-guess", data);
+      console.log(response);
+      let answer = response.correct ? 'Yes' : 'No';
+
+      Swal.fire({
+        title: 'You asked:',
+        html: data.sentence + '<br><br><b>Answer</b>: ' + answer,
+        confirmButtonText: 'OK'
+      })
     }
 	},
 });
