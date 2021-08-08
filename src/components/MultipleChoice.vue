@@ -6,7 +6,7 @@
           :key="index"
           v-for="(question, index) in questions"
           id="{{ question.attribute }}"
-          @click="select(index, question.attribute)"
+          @click="select(index, question.attribute, question.sentence)"
           v-bind:class="{ 'border-red-400': wrongChoice[index]}"
         >
           {{ question.sentence }}
@@ -20,7 +20,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
 	name: "MultipleChoice",
   props: {
-    questions: Array,
+    questions: Object,
     attribute: String
   },
   data() {
@@ -33,10 +33,15 @@ export default defineComponent({
     };
   },
   methods: {
-    select(index: number, questionAttribute: string): void {
+    select(index: number, questionAttribute: string, sentence: string): void {
+
       if(questionAttribute == this.attribute)
       {
-        //this.$emit('messageFromChild', this.attributes, index);
+        let data = {
+          choice: questionAttribute,
+          sentence: sentence
+        };
+        this.$emit('messageFromChild', data);
 
         return;
       }

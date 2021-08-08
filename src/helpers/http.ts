@@ -14,6 +14,7 @@ export async function get<T>(
     const response = await fetch(process.env.VUE_APP_BACKEND + request, {
       method: 'post',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Request-Headers': '*',
         'Access-Control-Request-Method': '*',
