@@ -9,6 +9,8 @@
           {{ object.name }}
           <br />
           {{ object.attributes }}
+          <br />
+          * {{ object.active }} *
         </div>
       </div>
 </template>
@@ -23,7 +25,25 @@ export default class ObjectList extends Vue {
   protected objects: Array<IObject> = [];
 
   async created(): Promise<void> {
-    this.objects = await get<Array<IObject>>("/api/index");
+    let matchingJSON = this.$route.params.matching;
+    let matchingNames = [];
+
+    if(matchingJSON) {
+      matchingNames = JSON.parse(matchingJSON.toString());
+    }
+
+    let allObjects = await get<Array<IObject>>("/api/index");
+
+    for(var i=0; i<allObjects.length; i++){
+      let active = true;
+
+      if(matchingNames.length > 0) {
+        active = matchingNames.indexOf(allObjects[i].name) > -1;
+      }
+      allObjects[i].active =  active;
+    }
+
+    this.objects = allObjects;
   }
 
   select(index: number): void {
