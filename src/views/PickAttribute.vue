@@ -13,6 +13,8 @@ import AttributeList from "../components/AttributeList.vue";
 import MultipleChoice from "../components/MultipleChoice.vue";
 import { post } from "../helpers/http";
 import Swal from 'sweetalert2'
+import router from '../router';
+import { IObject } from "../interfaces/IObject";
 
 export default defineComponent({
 	name: "PickAttribute",
@@ -45,9 +47,7 @@ export default defineComponent({
         }
     },
     async questionSelected(data: any): Promise<void> {
-      console.log(data);
       let response = await post<any>("/api/user-guess", data);
-      console.log(response);
       let answer = response.correct ? 'Yes' : 'No';
 
       Swal.fire({
@@ -55,6 +55,12 @@ export default defineComponent({
         html: data.sentence + '<br><br><b>Answer</b>: ' + answer,
         confirmButtonText: 'OK'
       })
+
+      let matchingNames = response.matching.map(function(object: IObject) {
+        return object.name;
+      });
+      let matchingJson = JSON.stringify(matchingNames);
+      router.push({name: 'Home', params: { matching: matchingJson }});
     }
 	},
 });
