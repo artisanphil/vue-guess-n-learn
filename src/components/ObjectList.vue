@@ -25,14 +25,22 @@ export default class ObjectList extends Vue {
   protected objects: Array<IObject> = [];
 
   async created(): Promise<void> {
+    let allObjects = await get<Array<IObject>>("/api/index");
+
+    this.objects = this.setObjectsActiveState(allObjects);
+  }
+
+  select(index: number): void {
+    this.$emit('messageFromChild', this.objects, index);
+  }
+
+  setObjectsActiveState(allObjects: Array<IObject>): Array<IObject> {
     let matchingJSON = this.$route.params.matching;
     let matchingNames = [];
 
     if(matchingJSON) {
       matchingNames = JSON.parse(matchingJSON.toString());
     }
-
-    let allObjects = await get<Array<IObject>>("/api/index");
 
     for(var i=0; i<allObjects.length; i++){
       let active = true;
@@ -43,11 +51,7 @@ export default class ObjectList extends Vue {
       allObjects[i].active =  active;
     }
 
-    this.objects = allObjects;
-  }
-
-  select(index: number): void {
-    this.$emit('messageFromChild', this.objects, index);
+    return allObjects;
   }
 }
 </script>
