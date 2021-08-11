@@ -44,6 +44,13 @@ export default class Home extends Vue {
 
   protected yourSelection: IObject = {} as IObject;
 
+  async created(): Promise<void>  {
+    if(Object.keys(this.$route.params).length > 0) {
+      let objectSelected = await get<IObject>("/api/select");
+      this.yourSelection = objectSelected;
+    }
+  }
+
   async objectSelected(objects: Array<IObject>, index: number): Promise<void> {
     let name = objects[index].name;
     const data = { selection: name };
