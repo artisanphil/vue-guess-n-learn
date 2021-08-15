@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import PickAttribute from '../views/PickAttribute.vue'
+import GameOver from '../views/GameOver.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/pick-attribute',
     name: 'Pick Attribute',
     component: PickAttribute
+  },
+  {
+    path: '/game-over',
+    name: 'Game Over',
+    component: GameOver
   }
 ]
 
