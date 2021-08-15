@@ -10,16 +10,18 @@
         <div id="your-selection">
           {{ yourSelection }}
         </div>
+        <div id="ask" class="my-2">
+          <button @click="guess()" class="swal2-confirm swal2-styled">Continue</button>
+        </div>
       </div>
     </div>
   </main>
-  <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import ObjectList from "../components/ObjectList.vue";
-import ConfirmDialogue from "../components/ConfirmDialogue.vue";
+import Swal from 'sweetalert2'
 import { IComputerGuess } from "../interfaces/IComputerGuess";
 import { IObject } from "../interfaces/IObject";
 import { get, post } from "../helpers/http";
@@ -33,15 +35,9 @@ import router from '../router';
   },
   components: {
     ObjectList,
-    ConfirmDialogue,
   },
 })
 export default class Home extends Vue {
-
-  $refs!: {
-    confirmDialogue: InstanceType<typeof ConfirmDialogue>;
-  };
-
   protected yourSelection: IObject = {} as IObject;
 
   async created(): Promise<void>  {
@@ -55,10 +51,10 @@ export default class Home extends Vue {
     let name = objects[index].name;
     const data = { selection: name };
 
-    const ok = await this.$refs.confirmDialogue.show({
+    const ok = await Swal.fire({
       title: "Your selection",
-      message: "You have selected " + name,
-      okButton: "OK",
+      text: "You have selected " + name,
+      reverseButtons: true
     });
 
     if (ok) {
@@ -69,37 +65,61 @@ export default class Home extends Vue {
   }
 
   async guess(sentence?: string, computerChoice?: string): Promise<void> {
+    let question = await this.getComputerQuestion(sentence, computerChoice);
+    let answer = await this.displayGuessDialog(question);
 
-    let message = "";
-
-    //@todo needs to be refactored
-    if (sentence == null) {
-      let question = await get<IComputerGuess>("/api/computer-guess");
-      sentence = question.sentence;
-      message = sentence;
-      computerChoice = question.choice;
-    }
-    else {
-      //@todo use tailwind
-      let wrong = "<span style=\"color:red;\">Wrong!</span><br />";
-      message = wrong + sentence;
+    if(question.choice == '') {
+      router.push('game-over');
+      return;
     }
 
-    const answer = await this.$refs.confirmDialogue.show({
-      title: "Computer Guess",
-      message: message,
-      okButton: "Yes",
-      cancelButton: "No",
-    });
-
-    const data = { correct: answer, choice: computerChoice };
+    const data = { correct: answer, choice: question.choice };
     let response = await post<any>("/api/computer-guess", data);
 
     if(answer !== response.correct) {
-      return this.guess(sentence, computerChoice);
+      return this.guess(question.sentence, question.choice);
     }
 
     router.push('pick-attribute');
+  }
+
+  async getComputerQuestion(sentence?: string, computerChoice?: string): Promise<IComputerGuess> {
+
+    if (sentence == null) {
+      return await get<IComputerGuess>("/api/computer-guess");
+    }
+
+    let question: IComputerGuess = {} as IComputerGuess;
+    question.choice = computerChoice ?? '';
+
+    //@todo use tailwind
+    let wrong = "<span style=\"color:red;\">Wrong!</span><br />";
+    question.sentence = wrong + sentence;
+
+    return question;
+  }
+
+  async displayGuessDialog(question: IComputerGuess): Promise<boolean>
+  {
+    let dialogButtons = Swal.mixin({
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+    });
+
+    if(question.choice == '') {
+        dialogButtons = Swal.mixin({
+            confirmButtonText: 'OK',
+      });
+    }
+
+    const dialog = await dialogButtons.fire({
+      title: 'Computer Guess',
+      html: question.sentence,
+      reverseButtons: true
+    });
+
+    return dialog.isConfirmed;
   }
 }
 </script>
