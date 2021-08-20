@@ -22,8 +22,8 @@
 import { Options, Vue } from "vue-class-component";
 import ObjectList from "../components/ObjectList.vue";
 import Swal from 'sweetalert2'
-import { IComputerGuess } from "../interfaces/IComputerGuess";
 import { IObject } from "../interfaces/IObject";
+import GuessClass from "../classes/Guess";
 import { get, post } from "../helpers/http";
 import router from '../router';
 
@@ -65,8 +65,8 @@ export default class Home extends Vue {
   }
 
   async guess(sentence?: string, computerChoice?: string): Promise<void> {
-    let question = await this.getComputerQuestion(sentence, computerChoice);
-    let answer = await this.displayGuessDialog(question);
+    let question = await GuessClass.getComputerQuestion(sentence, computerChoice);
+    let answer = await GuessClass.displayGuessDialog(question);
 
     if(question.choice == '') {
       router.push('game-over');
@@ -81,45 +81,6 @@ export default class Home extends Vue {
     }
 
     router.push('pick-attribute');
-  }
-
-  async getComputerQuestion(sentence?: string, computerChoice?: string): Promise<IComputerGuess> {
-
-    if (sentence == null) {
-      return await get<IComputerGuess>("/api/computer-guess");
-    }
-
-    let question: IComputerGuess = {} as IComputerGuess;
-    question.choice = computerChoice ?? '';
-
-    //@todo use tailwind
-    let wrong = "<span style=\"color:red;\">Wrong!</span><br />";
-    question.sentence = wrong + sentence;
-
-    return question;
-  }
-
-  async displayGuessDialog(question: IComputerGuess): Promise<boolean>
-  {
-    let dialogButtons = Swal.mixin({
-        showCancelButton: true,
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No',
-    });
-
-    if(question.choice == '') {
-        dialogButtons = Swal.mixin({
-            confirmButtonText: 'OK',
-      });
-    }
-
-    const dialog = await dialogButtons.fire({
-      title: 'Computer Guess',
-      html: question.sentence,
-      reverseButtons: true
-    });
-
-    return dialog.isConfirmed;
   }
 }
 </script>
