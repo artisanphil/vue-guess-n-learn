@@ -1,0 +1,10 @@
+{
+    "projectId": "Guess and Learn",
+    "baseUrl": "http://localhost:8080",
+    "testFiles": "**/*.spec.js",
+    "fixturesFolder": "tests/cypress/fixtures",
+    "integrationFolder": "tests/cypress/integration",
+    "pluginsFile": "tests/cypress/plugins/index.js",
+    "screenshotsFolder": "tests/cypress/screenshots",
+    "supportFile": "tests/cypress/support/index.js"
+}
