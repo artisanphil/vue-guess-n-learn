@@ -1,5 +1,5 @@
 <template>
-<div class="flex flex-wrap w-full">
+<div id=attributes class="flex flex-wrap w-full">
         <div
           class="px-8 py-6 lg:w-1/4 w-1/3 border hover:shadow-lg cursor-pointer"
           :key="index"

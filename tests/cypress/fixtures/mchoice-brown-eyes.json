@@ -1,0 +1,14 @@
+[
+    {
+        "attribute": "white hair",
+        "sentence": "Does the person have white hair?"
+    },
+    {
+        "attribute": "brown eyes",
+        "sentence": "Does the person have brown eyes?"
+    },
+    {
+        "attribute": "beard",
+        "sentence": "Does the person have a beard?"
+    }
+]
