@@ -35,7 +35,7 @@ export default defineComponent({
         this.attribute = attributes[index];
         this.displayAttributes = false;
 
-        let url = `/api/user-guess?choice=${this.attribute}`;
+        let url = `/api/user-guess?choice=${this.attribute}&questiontype=multiple-choice`;
         let response = await fetch(process.env.VUE_APP_BACKEND + url);
         let questionType = await response.headers.get('Question-Type');
         this.questions = await response.json();
