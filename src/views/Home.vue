@@ -8,7 +8,7 @@
       <div class="flex-auto lg:w-1/5">
         <h3 class="text-lg">Your character</h3>
         <div id="your-selection">
-          {{ yourSelection }}
+          <img v-bind:src="yourSelection" />
         </div>
         <div id="ask" class="my-2">
           <button @click="guess()" class="swal2-confirm swal2-styled">Continue</button>
@@ -24,6 +24,7 @@ import ObjectList from "../components/ObjectList.vue";
 import Swal from 'sweetalert2'
 import { IObject } from "../interfaces/IObject";
 import GuessClass from "../classes/Guess";
+import ObjectClass from "../classes/ObjectClass";
 import { get, post } from "../helpers/http";
 import router from '../router';
 
@@ -38,12 +39,13 @@ import router from '../router';
   },
 })
 export default class Home extends Vue {
-  protected yourSelection: IObject = {} as IObject;
+  protected yourSelection: string = '' as string;
 
   async created(): Promise<void>  {
     if(Object.keys(this.$route.params).length > 0) {
       let objectSelected = await get<IObject>("/api/select");
-      this.yourSelection = objectSelected;
+
+      this.yourSelection = ObjectClass.getImage(objectSelected);
     }
   }
 
@@ -59,7 +61,7 @@ export default class Home extends Vue {
 
     if (ok) {
       await post<any>("/api/select", data);
-      this.yourSelection = objects[index];
+      this.yourSelection = ObjectClass.getImage(objects[index]);
       this.guess();
     }
   }
