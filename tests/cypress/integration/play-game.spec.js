@@ -20,7 +20,7 @@ function selectCharacter()
 {
   cy.get('body').should('include.text', 'Please choose a character for the computer to guess');
 
-  cy.contains('Liam').click();
+  cy.get('#Liam').click();
 
   cy.get('.swal2-popup').should('include.text', 'You have selected Liam');
 }
