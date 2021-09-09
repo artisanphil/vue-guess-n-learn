@@ -6,7 +6,9 @@
           v-for="(object, index) in objects"
           @click="select(index)"
         >
-          <img v-bind:src="object.image" />
+          <div v-bind:id="object.name">
+            <img v-bind:src="object.image" />
+          </div>
         </div>
       </div>
 </template>
