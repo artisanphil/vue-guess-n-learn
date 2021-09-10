@@ -10,15 +10,15 @@ There will be 3 quiz modes:
 
 ## Technologies:
 
-Laravel API
-Nginx
-Vue JS with Typescript
+Laravel API\n
+Nginx\n
+Vue JS with Typescript\n
 Tailwind
 
 ## Installation
 
-Download the backend code (in private repository) and run in Docker
-copy .env.example to .env
-run `npm install`
-`npm run serve`
-go to http://localhost:8080
+Download the backend code (in private repository) and run in Docker\n
+copy .env.example to .env\n
+run `npm install`\n
+`npm run serve`\n
+go to http://localhost:8080\n
