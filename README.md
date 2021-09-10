@@ -1,29 +1,24 @@
-# vue-guess-and-learn
+## Guess N Learn, Vue Frontend
 
-## Project setup
-```
-npm install
-```
+This games is based on Guess Who, but for language learning.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+There will be 3 quiz modes:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- multiple choice (random from all questions)
+- fill in the blank
+- jumbled sentence
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## Technologies:
 
-### Lints and fixes files
-```
-npm run lint
-```
+Laravel API
+Nginx
+Vue JS with Typescript
+Tailwind
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Installation
+
+Download the backend code (in private repository) and run in Docker
+copy .env.example to .env
+run `npm install`
+`npm run serve`
+go to http://localhost:8080
