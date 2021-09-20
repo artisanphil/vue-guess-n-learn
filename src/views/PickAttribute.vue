@@ -1,5 +1,5 @@
 <template>
-  <main class="container px-8 pt-2 mx-auto lg:px-4">
+  <main class="container px-8 pt-2 lg:px-4">
     <div class="flex">
       <AttributeList v-show="displayAttributes" @messageFromChild="attributeSelected" />
       <MultipleChoice v-show="displayMChoice" :questions="questions" :attribute="attribute" @messageFromChild="questionSelected" />

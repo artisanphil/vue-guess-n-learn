@@ -1,14 +1,12 @@
 <template>
-<div class="flex flex-wrap lg:w-4/5">
+<div class="flex flex-wrap justify-center">
         <div
-          class="px-8 py-6 lg:w-1/3 md:w-full border hover:shadow-lg cursor-pointer"
+          class="px-2 py-2 w-16 md:w-32 border hover:shadow-lg cursor-pointer"
           :key="index"
           v-for="(object, index) in objects"
           @click="select(index)"
         >
-          <div v-bind:id="object.name">
-            <img v-bind:src="object.image" />
-          </div>
+          <img class="object-fit:contain" v-bind:src="object.image" />
         </div>
       </div>
 </template>
