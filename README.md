@@ -34,6 +34,8 @@ go to http://localhost:8080
 
 ## Docker (for production)
 
-docker build . -t vue-guess-n-learn
+`cp .env.example .env`
 
-docker run -d -p 8080:80 vue-guess-n-learn
+`docker build . -t vue-guess-n-learn`
+
+`docker run -d -p 8080:80 vue-guess-n-learn`
