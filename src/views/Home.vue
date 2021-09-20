@@ -1,27 +1,27 @@
 <template>
   <main class="container px-8 pt-2 mx-auto lg:px-4">
-    <div class="flex-auto  md:hidden lg:hidden mx-auto">
+    <div class="flex-auto sm:hidden  md:hidden lg:hidden mx-auto">
       <h3 class="text-lg">Your character</h3>
       <div id="your-selection" class="w-20 mx-auto">
         <img v-bind:src="yourSelection" />
       </div>
-      <!-- <div id="ask" class="my-2">
+      <div id="ask" class="my-2">
         <button @click="guess()" class="swal2-confirm swal2-styled">Continue</button>
-      </div> -->
+      </div>
     </div>
     <h1 class="text-center text-2xl mt-4 pb-4">
       Please choose a character for the computer to guess
     </h1>
     <div class="flex">
       <ObjectList @messageFromChild="objectSelected" />
-      <div class="flex-auto hidden md:block md:2/6">
+      <div class="flex-auto hidden sm:block md:2/6">
         <h3 class="text-lg">Your character</h3>
         <div id="your-selection">
           <img v-bind:src="yourSelection" />
         </div>
-        <!-- <div id="ask" class="my-2">
+        <div id="ask" class="my-2">
           <button @click="guess()" class="swal2-confirm swal2-styled">Continue</button>
-        </div> -->
+        </div>
       </div>
     </div>
     
@@ -98,7 +98,7 @@ export default class Home extends Vue {
 </script>
 
 <style>
-  @media (max-width: 768px) {
+  @media (min-width: 668px) {
 
   }
 </style>

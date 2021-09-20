@@ -41,7 +41,7 @@ export default class ObjectList extends Vue {
 
     for(var i=0; i<allObjects.length; i++){
       let active = true;
-      const imagePath = process.env.VUE_APP_BACKEND + '/images/characters/test/';
+      const imagePath = process.env.VUE_APP_BACKEND + '/images/characters/';
       let image = ObjectClass.getImage(allObjects[i]);
 
       if(matchingNames.length > 0) {
