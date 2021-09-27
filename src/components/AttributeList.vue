@@ -67,8 +67,7 @@ export default class AttributeList extends Vue {
     let allAttributes: IAttribute[] = [];
 
     for (var i = 0; i < attributes.length; i++) {
-      //let image = imagePath + attributes[i].replace(" ", "-") + ".png";
-      let image = "http://via.placeholder.com/150x100";
+      let image = imagePath + attributes[i].replace(" ", "-") + ".png";
       let attribute = { name: attributes[i], image: image };
       allAttributes[i] = attribute;
     }
@@ -77,7 +76,7 @@ export default class AttributeList extends Vue {
   }
 
   select(index: number): void {
-    this.$emit("messageFromChild", this.attributes, index);
+    this.$emit("messageFromChild", index);
   }
 }
 </script>
