@@ -37,6 +37,7 @@ export default defineComponent({
       displayAttributes: true,
       displayMChoice: false,
       questions: [],
+      attribute: "",
       image: "",
     };
   },
@@ -48,15 +49,15 @@ export default defineComponent({
   methods: {
     async attributeSelected(index: number): Promise<void> {
       let attributes = await get<Array<string>>("/api/remaining-attributes");
-      let attribute = attributes[index];
+      this.attribute = attributes[index];
       const imagePath =
         process.env.VUE_APP_BACKEND + "/images/character-attributes/";
-      this.image = imagePath + attribute.replace(" ", "-") + ".png";
+      this.image = imagePath + this.attribute.replace(" ", "-") + ".png";
 
       this.displayQuestionHeader = true;
       this.displayAttributes = false;
 
-      let url = `/api/user-guess?choice=${attribute}&questiontype=multiple-choice`;
+      let url = `/api/user-guess?choice=${this.attribute}&questiontype=multiple-choice`;
       let response = await fetch(process.env.VUE_APP_BACKEND + url);
       let questionType = await response.headers.get("Question-Type");
       this.questions = await response.json();
