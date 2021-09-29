@@ -5,7 +5,12 @@
     </h1>
     <div class="flex">
       <ObjectList @messageFromChild="objectSelected" />
-      <SelectedCharacter v-if="characterSelected" :yourSelection="yourSelection" />
+      <SelectedCharacter
+        v-if="characterSelected"
+        :yourSelection="yourSelection"
+        :displayAskButton="displayAskButton"
+        @messageFromChild="guess"
+      />
     </div>
   </main>
 </template>
@@ -26,6 +31,7 @@ import router from "../router";
     return {
       yourSelection: "",
       characterSelected: false,
+      displayAskButton: false,
     };
   },
   components: {
@@ -36,6 +42,7 @@ import router from "../router";
 export default class Home extends Vue {
   protected yourSelection: string = "" as string;
   protected characterSelected: boolean = false as boolean;
+  protected displayAskButton: boolean = false as boolean;
 
   async created(): Promise<void> {
     if (Object.keys(this.$route.params).length > 0) {
@@ -43,6 +50,7 @@ export default class Home extends Vue {
 
       this.yourSelection = ObjectClass.getImage(objectSelected);
       this.characterSelected = true;
+      this.displayAskButton = true;
     }
   }
 
