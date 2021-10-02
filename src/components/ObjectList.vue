@@ -1,15 +1,34 @@
 <template>
-<div class="flex flex-wrap justify-center">
+<div  id="container" class="grid w-full">
         <div
-          class="px-2 py-2 w-16 md:w-32 border hover:shadow-lg cursor-pointer"
+          id="objects"
+          class="border hover:shadow-lg cursor-pointer"
           :key="index"
           v-for="(object, index) in objects"
           @click="select(index)"
         >
-          <img class="object-fit:contain" v-bind:src="object.image" />
+        <div class="object" :style="{'background-image':'url(' + object.image + ')'}"></div>
         </div>
       </div>
 </template>
+
+<style>
+@media (orientation: landscape) {
+  #container {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  #objects {
+    height: 100%;
+  }
+  .object {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14.5vh;
+  }
+}
+
+</style>
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';

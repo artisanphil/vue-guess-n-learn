@@ -1,5 +1,5 @@
 <template>
-  <div class="w-6/12">
+  <div>
     <h3 class="text-lg">Your character</h3>
     <div id="your-selection" class="w-50 mx-auto">
       <img v-bind:src="yourSelection" />
