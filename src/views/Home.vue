@@ -1,6 +1,6 @@
 <template>
   <main class="container px-8 mx-auto lg:px-4">
-    <div id="command">
+    <div id="commandLandscape" v-show="displayCommand">
       <h1 class="text-center">
         Please choose a character for the computer to guess
       </h1>
@@ -13,20 +13,54 @@
         :displayAskButton="displayAskButton"
         @messageFromChild="guess"
       />
+      <div id="commandPortrait" v-show="displayCommand">
+        <h1 class="text-center">
+          Please choose a character for the computer to guess
+        </h1>
+      </div>
     </div>
   </main>
 </template>
 
 <style>
-#command h1 {
-  font-size: 3vh;
-  margin-bottom: 2vh;
+@media (orientation: landscape) {
+  #container {
+    margin-top: 1vh;
+  }
+  #commandLandscape h1 {
+    font-size: 3vh;
+    margin-top: 0.5vh;
+    margin-bottom: 1vh;
+  }
+  #commandLandscape {
+    height: 5vh;
+  }
+  #commandPortrait {
+    display: none;
+  }
+  #objectlist {
+    height: 92vh;
+  }
 }
-#command {
-  height: 5vh;
-}
-#objectlist {
-  height: 92vh;
+
+@media (orientation: portrait) {
+  #commandPortrait h1 {
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+  }
+  #commandPortrait {
+    height: 15vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  #commandLandscape {
+    display: none;
+  }
+  #objectlist {
+    height: 99vh;
+    flex-direction: column-reverse;
+  }
 }
 </style>
 
@@ -47,6 +81,7 @@ import router from "../router";
       yourSelection: "",
       characterSelected: false,
       displayAskButton: false,
+      displayCommand: true,
     };
   },
   components: {
@@ -58,6 +93,7 @@ export default class Home extends Vue {
   protected yourSelection: string = "" as string;
   protected characterSelected: boolean = false as boolean;
   protected displayAskButton: boolean = false as boolean;
+  protected displayCommand: boolean = true as boolean;
 
   async created(): Promise<void> {
     if (Object.keys(this.$route.params).length > 0) {
@@ -66,6 +102,7 @@ export default class Home extends Vue {
       this.yourSelection = ObjectClass.getImage(objectSelected);
       this.characterSelected = true;
       this.displayAskButton = true;
+      this.displayCommand = false;
     }
   }
 
@@ -83,6 +120,7 @@ export default class Home extends Vue {
       await post<any>("/api/select", data);
       this.yourSelection = ObjectClass.getImage(objects[index]);
       this.characterSelected = true;
+      this.displayCommand = false;
       this.guess();
     }
   }

@@ -28,6 +28,19 @@
   }
 }
 
+@media (orientation: portrait) {
+  #container {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    height: 100vh;
+  }
+  .object {
+    height: 10vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 8vh;
+  }
+}
+
 </style>
 
 <script lang="ts">
