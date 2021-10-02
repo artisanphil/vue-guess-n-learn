@@ -1,9 +1,11 @@
 <template>
-  <main class="container px-8 pt-2 mx-auto lg:px-4">
-    <h1 class="text-center text-2xl mt-4 pb-4">
-      Please choose a character for the computer to guess
-    </h1>
-    <div class="flex">
+  <main class="container px-8 mx-auto lg:px-4">
+    <div id="command">
+      <h1 class="text-center">
+        Please choose a character for the computer to guess
+      </h1>
+    </div>
+    <div class="flex" id="objectlist">
       <ObjectList @messageFromChild="objectSelected" />
       <SelectedCharacter
         v-if="characterSelected"
@@ -14,6 +16,19 @@
     </div>
   </main>
 </template>
+
+<style>
+#command h1 {
+  font-size: 3vh;
+  margin-bottom: 2vh;
+}
+#command {
+  height: 5vh;
+}
+#objectlist {
+  height: 92vh;
+}
+</style>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
