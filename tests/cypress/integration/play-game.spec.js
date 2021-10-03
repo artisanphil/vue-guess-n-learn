@@ -39,7 +39,7 @@ function computerGuess()
 
 function selectAttribute()
 {
-  cy.get('#attributes').contains('brown eyes').click();
+  cy.get('.attributeText').contains('brown eyes').click();
 }
 
 function askQuestion()

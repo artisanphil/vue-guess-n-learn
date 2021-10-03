@@ -7,7 +7,7 @@
           v-for="(object, index) in objects"
           @click="select(index)"
         >
-        <div class="object" :style="{'background-image':'url(' + object.image + ')'}"></div>
+        <div v-bind:id="object.name" class="object" :style="{'background-image':'url(' + object.image + ')'}"></div>
         </div>
       </div>
 </template>
