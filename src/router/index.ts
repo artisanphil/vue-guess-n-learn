@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
+import ChooseObject from '../views/ChooseObject.vue'
 import PickAttribute from '../views/PickAttribute.vue'
 import GameOver from '../views/GameOver.vue'
 
@@ -18,13 +19,18 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/choose-object',
+    name: 'ChooseObject',
+    component: ChooseObject
+  },
+  {
     path: '/pick-attribute',
-    name: 'Pick Attribute',
+    name: 'PickAttribute',
     component: PickAttribute
   },
   {
     path: '/game-over',
-    name: 'Game Over',
+    name: 'GameOver',
     component: GameOver
   }
 ]

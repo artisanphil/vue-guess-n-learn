@@ -24,7 +24,7 @@ import { defineComponent } from "vue";
 import AttributeList from "../components/AttributeList.vue";
 import MultipleChoice from "../components/MultipleChoice.vue";
 import QuestionHeader from "../components/QuestionHeader.vue";
-import { get, post } from "../helpers/http";
+import { get, post, getResponse } from "../helpers/http";
 import Swal from "sweetalert2";
 import router from "../router";
 import { IObject } from "../interfaces/IObject";
@@ -48,8 +48,8 @@ export default defineComponent({
   },
   methods: {
     async attributeSelected(index: number): Promise<void> {
-      let attributes = await get<Array<string>>("/api/remaining-attributes");
-      this.attribute = attributes[index];
+      let attributes = await get<Array<any>>("/api/remaining-attributes");
+      this.attribute = attributes[index]['key'];
       const imagePath =
         process.env.VUE_APP_BACKEND + "/images/character-attributes/";
       this.image = imagePath + this.attribute.replace(" ", "-") + ".png";
@@ -58,8 +58,8 @@ export default defineComponent({
       this.displayAttributes = false;
 
       let url = `/api/user-guess?choice=${this.attribute}&questiontype=multiple-choice`;
-      let response = await fetch(process.env.VUE_APP_BACKEND + url);
-      let questionType = await response.headers.get("Question-Type");
+      let response = await getResponse(url);
+      let questionType = response.headers.get("Question-Type");
       this.questions = await response.json();
 
       switch (questionType) {
@@ -82,7 +82,7 @@ export default defineComponent({
         return object.name;
       });
       let matchingJson = JSON.stringify(matchingNames);
-      router.push({ name: "Home", params: { matching: matchingJson } });
+      router.push({ name: "ChooseObject", params: { matching: matchingJson } });
     },
   },
 });

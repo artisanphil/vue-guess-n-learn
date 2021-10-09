@@ -1,6 +1,14 @@
-export async function get<T>(
+  export async function get<T>(
     request: any
   ): Promise<T> {
+    const response = await getResponse(request);
+
+    return response.json();
+  }
+
+  export async function getResponse<T>(
+    request: any
+  ): Promise<any> {
     const response = await fetch(process.env.VUE_APP_BACKEND + request, {
       headers: {
         'Accept': 'application/json',
@@ -10,9 +18,8 @@ export async function get<T>(
       },
       credentials: 'include',
     });
-    const body = await response.json();
 
-    return body;
+    return response;
   }
 
   export async function post<T>(
