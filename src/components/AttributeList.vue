@@ -61,14 +61,15 @@ export default class AttributeList extends Vue {
   protected attributes: Array<IAttribute> = [];
 
   async created(): Promise<void> {
-    let attributes = await get<Array<string>>("/api/remaining-attributes");
+    let attributes = await get<Array<any>>("/api/remaining-attributes");
+
     const imagePath =
       process.env.VUE_APP_BACKEND + "/images/character-attributes/";
     let allAttributes: IAttribute[] = [];
 
     for (var i = 0; i < attributes.length; i++) {
-      let image = imagePath + attributes[i].replace(" ", "-") + ".png";
-      let attribute = { name: attributes[i], image: image };
+      let image = imagePath + attributes[i]["key"].replace(" ", "-") + ".png";
+      let attribute = { name: attributes[i]["value"], image: image };
       allAttributes[i] = attribute;
     }
 
