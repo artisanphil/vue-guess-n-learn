@@ -89,6 +89,7 @@ import router from "../router";
     SelectedCharacter,
   },
 })
+
 export default class ChooseObject extends Vue {
   protected yourSelection: string = "" as string;
   protected characterSelected: boolean = false as boolean;
@@ -121,19 +122,37 @@ export default class ChooseObject extends Vue {
     let name = objects[index].name;
     const data = { selection: name };
 
-    const ok = await Swal.fire({
-      title: "Your selection",
-      text: "You have selected " + name,
-      reverseButtons: true,
-    });
+    let userGuess = "";
 
-    if (ok) {
-      await post<any>("/api/select", data);
-      this.yourSelection = ObjectClass.getImage(objects[index]);
-      this.characterSelected = true;
-      this.displayCommand = false;
-      this.guess();
+    if(!this.characterSelected) {
+      const ok = await Swal.fire({
+        title: "Your selection",
+        text: "You have selected " + name,
+        reverseButtons: true,
+      });
+
+      if (ok) {
+        await post<any>("/api/select", data);
+        this.yourSelection = ObjectClass.getImage(objects[index]);
+        this.characterSelected = true;
+        this.displayCommand = false;
+        this.guess();
+      }
+    } else {
+      userGuess = await Swal.fire({
+        title: `Are you sure "${name}" is the correct user?`,
+        text: 'If you click "Cancel", continue with questions.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+        return result.isConfirmed ? name : "";
+      })
     }
+    // TODO: delete console log when userGuess is validated
+    console.log("USER GUESS:" + userGuess);
   }
 
   async guess(sentence?: string, computerChoice?: string): Promise<void> {
