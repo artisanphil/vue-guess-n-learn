@@ -122,8 +122,6 @@ export default class ChooseObject extends Vue {
     let name = objects[index].name;
     const data = { selection: name };
 
-    let userGuess = "";
-
     if(!this.characterSelected) {
       const ok = await Swal.fire({
         title: "Your selection",
@@ -139,20 +137,8 @@ export default class ChooseObject extends Vue {
         this.guess();
       }
     } else {
-      userGuess = await Swal.fire({
-        title: `Are you sure "${name}" is the correct user?`,
-        text: 'If you click "Cancel", continue with questions.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Confirm'
-      }).then((result) => {
-        return result.isConfirmed ? name : "";
-      })
+      this.readyToGuessPopup(name);
     }
-    // TODO: delete console log when userGuess is validated
-    console.log("USER GUESS:" + userGuess);
   }
 
   async guess(sentence?: string, computerChoice?: string): Promise<void> {
@@ -175,6 +161,23 @@ export default class ChooseObject extends Vue {
     }
 
     router.push("pick-attribute");
+  }
+
+  async readyToGuessPopup(name?: string): Promise<void>  {
+      await Swal.fire({
+        title: `Are you sure "${name}" is the correct character?`,
+        text: 'Click "Continue" to ask more questions.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        cancelButtonText: 'Continue',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+        if (!result.isConfirmed) {
+            this.guess();
+        }
+      })
   }
 }
 </script>
