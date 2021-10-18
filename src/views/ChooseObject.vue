@@ -89,6 +89,7 @@ import router from "../router";
     SelectedCharacter,
   },
 })
+
 export default class ChooseObject extends Vue {
   protected yourSelection: string = "" as string;
   protected characterSelected: boolean = false as boolean;
@@ -121,18 +122,22 @@ export default class ChooseObject extends Vue {
     let name = objects[index].name;
     const data = { selection: name };
 
-    const ok = await Swal.fire({
-      title: "Your selection",
-      text: "You have selected " + name,
-      reverseButtons: true,
-    });
+    if(!this.characterSelected) {
+      const ok = await Swal.fire({
+        title: "Your selection",
+        text: "You have selected " + name,
+        reverseButtons: true,
+      });
 
-    if (ok) {
-      await post<any>("/api/select", data);
-      this.yourSelection = ObjectClass.getImage(objects[index]);
-      this.characterSelected = true;
-      this.displayCommand = false;
-      this.guess();
+      if (ok) {
+        await post<any>("/api/select", data);
+        this.yourSelection = ObjectClass.getImage(objects[index]);
+        this.characterSelected = true;
+        this.displayCommand = false;
+        this.guess();
+      }
+    } else {
+      this.readyToGuessPopup(name);
     }
   }
 
@@ -156,6 +161,23 @@ export default class ChooseObject extends Vue {
     }
 
     router.push("pick-attribute");
+  }
+
+  async readyToGuessPopup(name?: string): Promise<void>  {
+      await Swal.fire({
+        title: `Are you sure "${name}" is the correct character?`,
+        text: 'Click "Continue" to ask more questions.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        cancelButtonText: 'Continue',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+        if (!result.isConfirmed) {
+            this.guess();
+        }
+      })
   }
 }
 </script>
