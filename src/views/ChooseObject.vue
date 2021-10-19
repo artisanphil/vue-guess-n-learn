@@ -120,22 +120,10 @@ export default class ChooseObject extends Vue {
 
   async objectSelected(objects: Array<IObject>, index: number): Promise<void> {
     let name = objects[index].name;
-    const data = { selection: name };
+    let object = objects[index];
 
     if(!this.characterSelected) {
-      const ok = await Swal.fire({
-        title: "Your selection",
-        text: "You have selected " + name,
-        reverseButtons: true,
-      });
-
-      if (ok) {
-        await post<any>("/api/select", data);
-        this.yourSelection = ObjectClass.getImage(objects[index]);
-        this.characterSelected = true;
-        this.displayCommand = false;
-        this.guess();
-      }
+      this.displaySelection(name, object);
     } else {
       this.readyToGuessPopup(name);
     }
@@ -161,6 +149,23 @@ export default class ChooseObject extends Vue {
     }
 
     router.push("pick-attribute");
+  }
+
+  async displaySelection(name: string, object: IObject): Promise<void> {
+      const data = { selection: name };
+      const ok = await Swal.fire({
+        title: "Your selection",
+        text: "You have selected " + name,
+        reverseButtons: true,
+      });
+
+      if (ok) {
+        await post<any>("/api/select", data);
+        this.yourSelection = ObjectClass.getImage(object);
+        this.characterSelected = true;
+        this.displayCommand = false;
+        this.guess();
+      }
   }
 
   async readyToGuessPopup(name?: string): Promise<void>  {
