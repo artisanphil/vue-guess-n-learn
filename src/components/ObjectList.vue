@@ -2,12 +2,12 @@
 <div  id="container" class="grid w-full">
         <div
           id="objects"
-          class="border hover:shadow-lg cursor-pointer"
+          class="border hover:shadow-lg"
           :key="index"
           v-for="(object, index) in objects"
           @click="select(index)"
         >
-        <div v-bind:id="object.name" class="object" :style="{'background-image':'url(' + object.image + ')'}"></div>
+        <div v-bind:class="{ active: object.active}" v-bind:id="object.name" class="object" :style="{'background-image':'url(' + object.image + ')'}"></div>
         </div>
       </div>
 </template>
@@ -26,6 +26,10 @@
     background-position: center;
     background-size: 14.5vh;
   }
+}
+
+.active {
+  cursor: pointer;
 }
 
 @media (orientation: portrait) {
@@ -84,6 +88,7 @@ export default class ObjectList extends Vue {
         image = imagePath + 'hidden.png';
       }
 
+      allObjects[i].active = active;
       allObjects[i].image = image;
     }
 

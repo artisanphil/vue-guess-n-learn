@@ -111,6 +111,10 @@ export default class ChooseObject extends Vue {
     let name = objects[index].name;
     let object = objects[index];
 
+    if(!object.active) {
+      return;
+    }
+
     if (!this.characterSelected) {
       this.displaySelection(name, object);
     } else {
