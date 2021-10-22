@@ -11,7 +11,7 @@
         v-if="characterSelected"
         :yourSelection="yourSelection"
         :displayAskButton="displayAskButton"
-        @messageFromChild="guess"
+        @messageFromChild="computerGuess"
       />
       <div id="commandPortrait" v-show="displayCommand">
         <h1 class="text-center">
