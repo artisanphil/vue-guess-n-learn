@@ -6,7 +6,7 @@
         <img v-bind:src="yourSelection" />
       </div>
       <div id="ask" class="my-2" v-show="displayAskButton">
-        <button @click="guess()" class="m-0 text-sm swal2-confirm swal2-styled">
+        <button @click="computerGuess()" class="m-0 text-sm swal2-confirm swal2-styled">
           Continue
         </button>
       </div>
@@ -50,7 +50,7 @@ export default defineComponent({
     displayAskButton: Boolean,
   },
   methods: {
-    guess(): void {
+    computerGuess(): void {
       this.$emit("messageFromChild");
     },
   },
