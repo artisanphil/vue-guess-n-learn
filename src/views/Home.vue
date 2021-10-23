@@ -5,11 +5,11 @@
 
         <div id=selectLanguage class="flex">
           <figure>
-              <img src="images/languages/en_us.png" @click="selectLanguage('en_us')" />
+              <img id="en_us"  src="images/languages/en_us.png" @click="selectLanguage('en_us')" />
               <figcaption>American English</figcaption>
           </figure>
           <figure>
-            <img src="images/languages/en_uk.png" @click="selectLanguage('en_uk')" />
+            <img id="en_uk" src="images/languages/en_uk.png" @click="selectLanguage('en_uk')" />
               <figcaption>British English</figcaption>
           </figure>
         </div>
@@ -49,8 +49,8 @@ export default class Home extends Vue {
   async saveLanguage(languageCode: string): Promise<void> {
     await get<string>("/api/learn-language/" + languageCode);
   }
-  selectLanguage(languageCode: string): void {
-    this.saveLanguage(languageCode);
+  async selectLanguage(languageCode: string): Promise<void> {
+    await this.saveLanguage(languageCode);
     router.push("choose-object");
   }
 }
