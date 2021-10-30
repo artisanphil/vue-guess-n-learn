@@ -7,9 +7,17 @@
   }
 
   export async function getResponse<T>(
-    request: any
+    url: string,
+    params?: string[][]
   ): Promise<any> {
-    const response = await fetch(process.env.VUE_APP_BACKEND + request, {
+
+    let query = '';
+
+    if(params !== undefined) {
+      query = '?' + params.map(e => e.join('=')).join('&');
+    }
+
+    const response = await fetch(process.env.VUE_APP_BACKEND + url + query, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
