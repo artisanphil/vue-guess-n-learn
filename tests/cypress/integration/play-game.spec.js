@@ -54,9 +54,13 @@ function computerGuess()
 
 function selectAttribute()
 {
-  //test that it's using British spelling
-  cy.get('body').should('include.text', 'moustache');
-  cy.get('.attributeText').contains('brown eyes').click();
+  cy.intercept('/api/remaining-attributes').as('getAttributes')
+
+  cy.wait('@getAttributes').then((interception) => {
+    //test that it's using British spelling
+    cy.get('body').should('include.text', 'moustache');
+    cy.get('.attributeText').contains('brown eyes').click();
+  });
 }
 
 function askQuestion()
