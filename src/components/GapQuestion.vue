@@ -21,6 +21,7 @@ input[type="text"] {
 <script lang="ts">
 import { defineComponent } from "vue";
 import Swal from "sweetalert2";
+import { post } from "../helpers/http";
 
 export default defineComponent({
 	name: "GapQuestion",
@@ -46,10 +47,15 @@ export default defineComponent({
       let sentenceWithGap = this.getSentence(questions).replace('{gap}', input);
       this.sentence = sentenceWithGap;
     },
-    ask(): void {
+    async ask(): Promise<void> {
         let input = document.getElementById('gap') as HTMLInputElement;
+        let data = {
+          chosenAttribute: this.attributeValue,
+          answerAttribute: input.value
+        };
+        let response = await post<any>("/api/user-guess/verify-attribute", data);
 
-        if(input.value === this.attributeValue) {
+        if(response.correct) {
           this.continue();
         } else {
             Swal.fire({
