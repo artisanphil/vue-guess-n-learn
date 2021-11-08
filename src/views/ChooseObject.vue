@@ -133,7 +133,7 @@ export default class ChooseObject extends Vue {
     let answer = await GuessClass.displayGuessDialog(question);
 
     if (question.choice == "") {
-      router.push("game-over");
+      router.push({ name: "GameOver", params: { win: 'false' } });
       return;
     }
 
@@ -152,15 +152,7 @@ export default class ChooseObject extends Vue {
 
     let response = await post<any>("/api/user-guess/object", data);
 
-    if(response.correct) {
-      router.push("game-over");
-    } else {
-        await Swal.fire({
-          title: "Your Guess",
-          text: "Unfortunately your guess is wrong. Click on \"Continue\" to ask more questions.",
-        });
-    }
-
+    router.push({ name: "GameOver", params: { win: response.correct } });
   }
 
   async displaySelection(name: string, object: IObject): Promise<void> {
@@ -183,8 +175,7 @@ export default class ChooseObject extends Vue {
   async readyToGuessPopup(name: string): Promise<void> {
     await Swal.fire({
       title: `Are you sure "${name}" is the correct character?`,
-      text: 'Click "Continue" to ask more questions.',
-      icon: "warning",
+      html: '<p style="color:red;">Warning! If you fail you\'ll lose.</p>Click "Continue" to ask more questions.',
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
