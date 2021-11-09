@@ -2,7 +2,7 @@
   <div id="objectselection">
     <h3 class="text-lg">Your character</h3>
     <div id="selectionflex" class="flex">
-      <div id="your-selection">
+      <div id="your-selection" :class="displayAskButton ? 'your-selection-continue' : 'your-selection-centered'">
         <img v-bind:src="yourSelection" />
       </div>
       <div id="ask" class="my-2" v-show="displayAskButton">
@@ -20,6 +20,11 @@
     flex-direction: column;
     align-items: center;
   }
+
+    #your-selection img {
+      max-width: 200px;
+  }
+
 }
 
 @media (orientation: portrait) {
@@ -28,11 +33,20 @@
     align-items: center;
   }
 
-  #your-selection {
+  .your-selection-centered {
+    width: 100%;
+  }
+
+  .your-selection-centered img {
+    height: 10vh;
+    margin: auto;
+  }
+
+  .your-selection-continue {
       width: 50%;
   }
 
-  #your-selection img {
+  .your-selection-continue img {
     height: 10vh;
     margin-right: 5vw;
     float: right;
