@@ -24,7 +24,7 @@
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 14.5vh;
+    background-size: 13vh;
   }
 }
 
@@ -35,7 +35,6 @@
 @media (orientation: portrait) {
   #container {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    height: 100vh;
   }
   .object {
     height: 10vh;

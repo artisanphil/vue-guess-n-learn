@@ -39,17 +39,13 @@
     display: none;
   }
   #objectlist {
-    height: 92vh;
+    height: 86vh;
   }
 }
 
 @media (orientation: portrait) {
-  #commandPortrait h1 {
-    margin-top: 1vh;
-    margin-bottom: 2vh;
-  }
   #commandPortrait {
-    height: 15vh;
+    height: 10vh;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -58,7 +54,6 @@
     display: none;
   }
   #objectlist {
-    height: 99vh;
     flex-direction: column-reverse;
   }
 }

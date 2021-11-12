@@ -1,9 +1,24 @@
 <template>
-  <!-- <div id="nav">
+  <div id="content">
+    <router-view/>
+  </div>
+  <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
-  <router-view/>
+    <a
+      href="javascript:void(
+        window.open(
+          'https://form.jotform.com/213145745724355',
+          'blank',
+          'scrollbars=yes,
+          toolbar=no,
+          width=700,
+          height=500'
+        )
+      )
+    ">
+      Contact
+    </a>
+  </div>
 </template>
 
 <style lang="scss">
@@ -15,12 +30,16 @@
   color: #2c3e50;
 }
 
+#content {
+  min-height: 90vh;
+}
+
 #nav {
-  padding: 30px;
+  padding: 2vh 30px 3vh 30px;
 
   a {
-    font-weight: bold;
     color: #2c3e50;
+    font-size: 0.8rem;
 
     &.router-link-exact-active {
       color: darkblue;

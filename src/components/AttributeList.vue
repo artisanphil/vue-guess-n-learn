@@ -22,7 +22,7 @@
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
   #attributes {
-    height: 19vh;
+    height: 18vh;
   }
   .attributeText {
     margin-top: 0.5vh;
@@ -30,7 +30,7 @@
     font-size: 3vh;
   }
   .attributeImage {
-    height: 13vh;
+    height: 11.5vh;
   }
 }
 
@@ -39,7 +39,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   #attributes {
-    height: 14vh;
+    height: 13vh;
   }
   .attributeText {
     margin-top: 0.5vh;
@@ -47,7 +47,7 @@
     font-size: 2vh;
   }
   .attributeImage {
-    height: 9vh;
+    height: 8vh;
   }
 }
 </style>
