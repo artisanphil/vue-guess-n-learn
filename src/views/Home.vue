@@ -18,12 +18,12 @@
 
 <style>
   #home h1 {
-    font-size: 15vh !important;
+    font-size: 5rem !important;
     line-height: 1;
   }
 
   #description {
-    font-size: 5vh;
+    font-size: 2rem;
     margin-bottom: 10vh;
   }
 
