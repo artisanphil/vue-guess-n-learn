@@ -7,12 +7,33 @@
           v-for="(object, index) in objects"
           @click="select(index)"
         >
-        <div v-bind:class="{ active: object.active}" v-bind:id="object.name" class="object" :style="{'background-image':'url(' + object.image + ')'}"></div>
+        <div v-bind:class="{ active: object.active}" v-bind:id="object.name" class="object" :style="{'background-image':'url(' + object.image + ')'}">
+          <img v-bind:src="object.front" />
+        </div>
         </div>
       </div>
 </template>
 
 <style>
+#objects {
+  height: 100%;
+}
+.object {
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 20%;
+}
+
+.object img {
+  padding: 1vh;
+  margin: auto;
+}
+
+.active {
+  cursor: pointer;
+  opacity: 100%;
+}
+
 @media (orientation: landscape) {
   #container {
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -22,14 +43,12 @@
   }
   .object {
     height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
     background-size: 13vh;
   }
-}
 
-.active {
-  cursor: pointer;
+  .object img {
+    height: 15vh;
+  }
 }
 
 @media (orientation: portrait) {
@@ -38,9 +57,11 @@
   }
   .object {
     height: 10vh;
-    background-repeat: no-repeat;
-    background-position: center;
     background-size: 8vh;
+  }
+
+  .object img {
+    height: 10vh;
   }
 }
 
@@ -76,19 +97,21 @@ export default class ObjectList extends Vue {
 
     for(var i=0; i<allObjects.length; i++){
       let active = true;
-      const imagePath = process.env.VUE_APP_BACKEND + '/images/characters/';
       let image = ObjectClass.getImage(allObjects[i]);
 
       if(matchingNames.length > 0) {
         active = matchingNames.indexOf(allObjects[i].name) > -1;
       }
 
+      let front = 'images/transparent.png';
+
       if(!active) {
-        image = imagePath + 'hidden.png';
+        front = 'images/stop.png';
       }
 
       allObjects[i].active = active;
       allObjects[i].image = image;
+      allObjects[i].front = front;
     }
 
     return allObjects;
