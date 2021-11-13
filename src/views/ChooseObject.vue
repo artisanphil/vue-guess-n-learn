@@ -152,19 +152,22 @@ export default class ChooseObject extends Vue {
 
   async displaySelection(name: string, object: IObject): Promise<void> {
     const data = { selection: name };
-    const ok = await Swal.fire({
+    let image = ObjectClass.getImage(object)
+    await Swal.fire({
       title: "Your selection",
-      text: "You have selected " + name,
+      html: '<img width=50% src="' + image + '" style="margin:auto;">',
+      showCancelButton: true,
       reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        post<any>("/api/select", data).then(() => {
+            this.yourSelection = ObjectClass.getImage(object);
+            this.characterSelected = true;
+            this.displayCommand = false;
+            this.computerGuess();
+        })
+      }
     });
-
-    if (ok) {
-      await post<any>("/api/select", data);
-      this.yourSelection = ObjectClass.getImage(object);
-      this.characterSelected = true;
-      this.displayCommand = false;
-      this.computerGuess();
-    }
   }
 
   async readyToGuessPopup(name: string): Promise<void> {
