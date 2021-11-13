@@ -39,7 +39,7 @@ class Guess {
 
       const dialog = await dialogButtons.fire({
         title: 'Computer Guess',
-        html: '<img width=50% src="' + image + '" style="margin:auto;"><br/ >' + question.sentence,
+        html: '<img src="' + image + '" style="margin:auto; height: 40vh;">' + question.sentence,
         reverseButtons: true
       });
 

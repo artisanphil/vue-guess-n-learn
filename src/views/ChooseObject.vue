@@ -155,7 +155,7 @@ export default class ChooseObject extends Vue {
     let image = ObjectClass.getImage(object)
     await Swal.fire({
       title: "Your selection",
-      html: '<img width=50% src="' + image + '" style="margin:auto;">',
+      html: '<img src="' + image + '" style="margin:auto; height: 40vh;">',
       showCancelButton: true,
       reverseButtons: true,
     }).then((result) => {
