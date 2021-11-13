@@ -3,4 +3,5 @@ export interface IObject {
     attributes: string[];
     active: boolean;
     image: string;
+    front: string;
 }

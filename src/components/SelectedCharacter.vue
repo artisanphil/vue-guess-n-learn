@@ -29,7 +29,11 @@
 
 @media (orientation: portrait) {
   #objectselection {
-    height: 15vh;
+    align-items: center;
+  }
+
+  #ask {
+    display: flex;
     align-items: center;
   }
 
