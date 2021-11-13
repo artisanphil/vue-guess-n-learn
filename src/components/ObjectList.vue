@@ -21,7 +21,7 @@
 .object {
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 20%;
+  opacity: 0.2;
 }
 
 .object img {
@@ -31,7 +31,7 @@
 
 .active {
   cursor: pointer;
-  opacity: 100%;
+  opacity: 1;
 }
 
 @media (orientation: landscape) {
