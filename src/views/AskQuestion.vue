@@ -5,7 +5,7 @@
       <MultipleChoice
         v-show="displayMChoice"
         :questions="questions"
-        :attribute="attributeKey"
+        :attributeKey="attributeKey"
         @messageFromChild="questionSelected"
       />
       <GapQuestion
@@ -16,6 +16,12 @@
         @messageFromChild="questionSelected"
         ref="gapQuestion"
       />
+      <JumbledSentence
+        v-show="displayJumbledSentence"
+        :words="questions"
+        :attributeKey="attributeKey"
+        @messageFromChild="questionSelected"
+      />
     </div>
   </main>
 </template>
@@ -24,6 +30,7 @@
 import { defineComponent } from "vue";
 import MultipleChoice from "../components/MultipleChoice.vue";
 import GapQuestion from "../components/GapQuestion.vue";
+import JumbledSentence from "../components/JumbledSentence.vue";
 import QuestionHeader from "../components/QuestionHeader.vue";
 import { get, post, getResponse } from "../helpers/http";
 import Swal from "sweetalert2";
@@ -36,6 +43,7 @@ export default defineComponent({
     return {
       displayQuestionHeader: false,
       displayAttributes: true,
+      displayJumbledSentence: false,
       displayMChoice: false,
       displayGapQuestion: false,
       questions: [],
@@ -47,6 +55,7 @@ export default defineComponent({
   components: {
     MultipleChoice,
     GapQuestion,
+    JumbledSentence,
     QuestionHeader,
   },
   async created(): Promise<void> {
@@ -62,7 +71,7 @@ export default defineComponent({
     let params = [
       ['attributeKey', this.attributeKey],
       ['attributeValue', this.attributeValue],
-      ['questiontype', 'gap']
+      ['questiontype', 'drag-drop']
     ];
     let response = await getResponse(url, params);
     let questionType = response.headers.get("Question-Type");
@@ -71,6 +80,9 @@ export default defineComponent({
     switch (questionType) {
       case "multiple-choice":
         this.displayMChoice = true;
+        break;
+      case "drag-drop":
+        this.displayJumbledSentence = true;
         break;
       case "gap":
         this.displayGapQuestion = true;
