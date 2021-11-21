@@ -20,7 +20,7 @@ export default defineComponent({
 	name: "MultipleChoice",
   props: {
     questions: Object,
-    attribute: String
+    attributeKey: String
   },
   data() {
     return {
@@ -34,11 +34,11 @@ export default defineComponent({
   methods: {
     select(index: number, questionAttribute: string, sentence: string): void {
 
-      if(questionAttribute == this.attribute)
+      if(questionAttribute == this.attributeKey)
       {
         let data = {
           choice: questionAttribute,
-          sentence: sentence
+          sentenceAnswer: sentence
         };
         this.$emit('messageFromChild', data);
 
