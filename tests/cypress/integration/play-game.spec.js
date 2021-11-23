@@ -26,15 +26,16 @@ function selectLanguage()
 
 function selectCharacter()
 {
-  cy.get('body').should('include.text', 'Please choose a character for the computer to guess');
-
   cy.intercept('/api/index').as('getObjects')
 
   cy.wait('@getObjects').then((interception) => {
 
+    cy.get('body').should('include.text', 'Please choose a character for the computer to guess');
+
     cy.get('#Liam').click();
 
-    cy.get('.swal2-popup').should('include.text', 'You have selected Liam');
+    cy.get('.swal2-popup').should('include.text', 'Your selection');
+    cy.get('#swal2-html-container').find('img').should('have.attr', 'src').should('include','Liam.png');
   });
 }
 
