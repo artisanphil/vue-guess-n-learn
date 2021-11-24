@@ -28,18 +28,26 @@ class Guess {
           cancelButtonText: 'No',
       });
 
+      const objectSelected = await get<IObject>("/api/select");
+      const image = ObjectClass.getImage(objectSelected)
+      let questionSentence = '';
+
+      if (question.sentence != null) {
+          questionSentence = question.sentence;
+      }
+
+      let popupContent = '<img src="' + image + '" style="margin:auto; height: 40vh;">' + questionSentence;
+
       if(question.choice == '') {
           dialogButtons = Swal.mixin({
               confirmButtonText: 'OK',
         });
+        popupContent = question.sentence;
       }
-
-      const objectSelected = await get<IObject>("/api/select");
-      const image = ObjectClass.getImage(objectSelected)
 
       const dialog = await dialogButtons.fire({
         title: 'Computer Guess',
-        html: '<img src="' + image + '" style="margin:auto; height: 40vh;">' + question.sentence,
+        html: popupContent,
         reverseButtons: true
       });
 
