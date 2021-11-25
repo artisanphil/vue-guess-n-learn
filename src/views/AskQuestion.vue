@@ -71,7 +71,7 @@ export default defineComponent({
     let params = [
       ['attributeKey', this.attributeKey],
       ['attributeValue', this.attributeValue],
-      ['questiontype', 'drag-drop']
+      ['questiontype', this.getQuestionType()]
     ];
     let response = await getResponse(url, params);
     let questionType = response.headers.get("Question-Type");
@@ -107,6 +107,25 @@ export default defineComponent({
       let matchingJson = JSON.stringify(matchingNames);
       router.push({ name: "ChooseObject", params: { matching: matchingJson } });
     },
+    getQuestionType(): string{
+      let number = 0;
+
+      if(localStorage.getItem('qNumber') !== null) {
+        number = parseInt(localStorage.getItem('qNumber')!);
+      }
+
+      number++;
+      localStorage.setItem('qNumber', number.toString());
+      console.log(number);
+
+      if (number === 1 || number === 4) {
+        return "multiple-choice";
+      } else if (number % 2 === 0) {
+        return "drag-drop";
+      } else {
+        return "gap";
+      }
+    }
   },
 });
 </script>

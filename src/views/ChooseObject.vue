@@ -161,6 +161,7 @@ export default class ChooseObject extends Vue {
     }).then((result) => {
       if (result.isConfirmed) {
         post<any>("/api/select", data).then(() => {
+            localStorage.clear();
             this.yourSelection = ObjectClass.getImage(object);
             this.characterSelected = true;
             this.displayCommand = false;
