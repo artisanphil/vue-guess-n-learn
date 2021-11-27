@@ -66,7 +66,7 @@ function selectAttribute()
 
 function askQuestion()
 {
-    cy.request('POST', 'http://localhost:8880/api/computer-select', { selection: 'Tim' })
+    cy.request('POST', 'http://localhost/api/computer-select', { selection: 'Tim' })
 
     cy.get('.mchoice-item').not(':contains("brown eyes")').eq(0).click();
     cy.get('.mchoice-item').not(':contains("brown eyes")').eq(0).should('have.class', 'border-red-400');

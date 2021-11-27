@@ -63,8 +63,7 @@ export default class AttributeList extends Vue {
   async created(): Promise<void> {
     let attributes = await get<Array<any>>("/api/remaining-attributes");
 
-    const imagePath =
-      process.env.VUE_APP_BACKEND + "/images/character-attributes/";
+    const imagePath = "/images/character-attributes/";
     let allAttributes: IAttribute[] = [];
 
     for (var i = 0; i < attributes.length; i++) {
