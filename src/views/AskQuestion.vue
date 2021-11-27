@@ -61,8 +61,7 @@ export default defineComponent({
   async created(): Promise<void> {
     this.attributeKey = this.$route.params.attributeKey as string;
     this.attributeValue = this.$route.params.attributeValue as string;
-    const imagePath =
-      process.env.VUE_APP_BACKEND + "/images/character-attributes/";
+    const imagePath = "/images/character-attributes/";
     this.image = imagePath + this.attributeKey.replace(" ", "-") + ".png";
 
     this.displayQuestionHeader = true;
