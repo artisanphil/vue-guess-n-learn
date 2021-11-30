@@ -17,7 +17,8 @@
       )
     ">
       Contact
-    </a>
+    </a> |
+    <router-link to="/terms_privacy">Terms / Privacy</router-link>
   </div>
 </template>
 
@@ -32,6 +33,38 @@
 
 #content {
   min-height: 90vh;
+}
+
+.article {
+  text-align: left;
+  margin: 1em;
+}
+
+.article h1 {
+  font-size: 1.5em;
+  margin: 0.4em 0;
+  font-weight: bold;
+}
+
+.article h2 {
+  font-size: 1.1em;
+  margin: 0.2em 0;
+  font-weight: bold;
+}
+
+.article h3 {
+  font-size: 0.9em;
+  margin: 0.2em 0;
+  font-weight: bold;
+}
+
+.article p {
+  margin: 0.4em 0;
+}
+
+.article ul {
+    list-style: disc;
+    margin-left: 1em;
 }
 
 #nav {

@@ -20,6 +20,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/terms_privacy',
+    name: 'TermsPrivacy',
+    component: () => import('../views/TermsPrivacy.vue')
+  },
+
+  {
     path: '/choose-object',
     name: 'ChooseObject',
     component: ChooseObject
