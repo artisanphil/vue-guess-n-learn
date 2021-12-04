@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { post } from "../helpers/http";
 
 export default defineComponent({
 	name: "MultipleChoice",
@@ -32,18 +33,24 @@ export default defineComponent({
     };
   },
   methods: {
-    select(index: number, questionAttribute: string, sentence: string): void {
+    async select(index: number, questionAttribute: string, sentence: string): Promise<void>  {
 
-      if(questionAttribute == this.attributeKey)
-      {
         let data = {
-          choice: questionAttribute,
-          sentenceAnswer: sentence
+          type: "multiple-choice",
+          chosenAttribute: questionAttribute,
+          answerAttribute: this.attributeKey
         };
-        this.$emit('messageFromChild', data);
+        let response = await post<any>("/api/user-guess/verify-attribute", data);
 
-        return;
-      }
+        if(response.correct) {
+          let data = {
+            choice: questionAttribute,
+            sentenceAnswer: sentence
+          };
+          this.$emit('messageFromChild', data);
+
+          return;
+        }
 
       this.wrongChoice[index] = true;
     }
