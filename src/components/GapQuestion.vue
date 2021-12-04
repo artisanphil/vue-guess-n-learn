@@ -50,6 +50,7 @@ export default defineComponent({
     async ask(): Promise<void> {
         let input = document.getElementById('gap') as HTMLInputElement;
         let data = {
+          type: 'gap',
           chosenAttribute: this.attributeValue,
           answerAttribute: input.value
         };
