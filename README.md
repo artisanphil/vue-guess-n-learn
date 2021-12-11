@@ -1,4 +1,4 @@
-## Guess N Learn, Vue Frontend
+## Ask Lingua, Vue Frontend
 
 This games is based on Guess Who, but for language learning.
 
