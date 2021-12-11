@@ -1,54 +1,54 @@
 <template>
   <div class="article">
     <h1>Terms of Use / Privacy</h1>
-    <p>By using Guess N Learn any visitor agrees to be bound by these terms of use
+    <p>By using AskLingua any visitor agrees to be bound by these terms of use
     between you and Philip Perry.</p>
 
-    <p>Except where otherwise indicated Guess N Learn and its contents and the copyright
-    in the material contained on Guess N Learn are the property of Philip Perry.
-    Reproduction of material on Guess N Learn is strictly prohibited unless express
+    <p>Except where otherwise indicated AskLingua and its contents and the copyright
+    in the material contained on AskLingua are the property of Philip Perry.
+    Reproduction of material on AskLingua is strictly prohibited unless express
     written permission is given by Philip Perry.</p>
 
-    <p>Guess N Learn and the content thereof is provided for use “as is” and
+    <p>AskLingua and the content thereof is provided for use “as is” and
     Philip Perry makes no warranties or representations in respect of
-    Guess N Learn or its contents. No representations are given as to the
-    accuracy or fullness of information contained on Guess N Learn or any
+    AskLingua or its contents. No representations are given as to the
+    accuracy or fullness of information contained on AskLingua or any
     website to which it is linked. All warranties, express or implied, are
     to the fullest extent permitted by Law excluded.</p>
 
     <p>Under no circumstances shall Philip Perry or his employees, suppliers,
     agents or contractors be liable for any damages of any nature arising out
-    of or in connection with the use of Guess N Learn and its content or any
+    of or in connection with the use of AskLingua and its content or any
     website with which it is linked.</p>
 
-    <p>You may not distribute or redistribute any content of Guess N Learn without
+    <p>You may not distribute or redistribute any content of AskLingua without
     our prior and express authorisation or create a database in any form by
     downloading and storing any content.</p>
 
-    <p>You may use, adapt and photocopy materials on Guess N Learn for self-study
+    <p>You may use, adapt and photocopy materials on AskLingua for self-study
     but republishing without permission is not permitted. If you would like to
     republish something from Philip Perry please contact us through the contact
     form.</p>
 
-    <p>You may link to the home page and any other html page of Guess N Learn as long
+    <p>You may link to the home page and any other html page of AskLingua as long
     as you do not create a frame around the content and provided further that the
-    website linking to Guess N Learn does not infringe any intellectual property
+    website linking to AskLingua does not infringe any intellectual property
     right or contain distasteful or offensive material. Philip Perry reserves
-    the right to require you to remove any link to Guess N Learn.</p>
+    the right to require you to remove any link to AskLingua.</p>
 
     <p>We reserve the right to change these terms at any time and you will be
-    considered to have accepted such changes if you use Guess N Learn after we
-    have published the changed terms on Guess N Learn.</p>
+    considered to have accepted such changes if you use AskLingua after we
+    have published the changed terms on AskLingua.</p>
 
-    <p>Parts of Guess N Learn may include advertising. Philip Perry is not
+    <p>Parts of AskLingua may include advertising. Philip Perry is not
     responsible for the content of or any inaccuracy in any advertising or
     sponsorship which is the responsibility of the advertiser.</p>
 
     <p>These terms shall be governed by the Laws of England.</p>
     <p></p>
     <h1>Privacy Notice</h1>
-    <p>Guess N Learn is based in London, England and may be contacted through the
-    contact form. Like most websites, Guess N Learn receives or actively
+    <p>AskLingua is based in London, England and may be contacted through the
+    contact form. Like most websites, AskLingua receives or actively
     collects personal data that may identify an individual visitor.
     This notice outlines the personal data we collect, how we use it and your
     rights concerning that data.</p>
@@ -60,7 +60,7 @@
     <ul>
       <li>your IP address</li>
       <li>your web browser details</li>
-      <li>details on how you use Guess N Learn</li>
+      <li>details on how you use AskLingua</li>
     </ul>
 
     <p>In addition, we collect personal data that you knowingly and willingly
@@ -71,18 +71,18 @@
     </ul>
 
     <p>In addition, we may use Google Analytics software to collect information
-      about how you use Guess N Learn. Google Analytics stores information such
+      about how you use AskLingua. Google Analytics stores information such
       as:</p>
 
     <ul>
-      <li>the pages a user visits on Guess N Learn</li>
-      <li>how long a user spends on each Guess N Learn page</li>
-      <li>how a user arrives at Guess N Learn</li>
-      <li>what a user clicks on while visiting Guess N Learn</li>
+      <li>the pages a user visits on AskLingua</li>
+      <li>how long a user spends on each AskLingua page</li>
+      <li>how a user arrives at AskLingua</li>
+      <li>what a user clicks on while visiting AskLingua</li>
     </ul>
 
   <p>The legal basis for collecting this personal data is to perform a task in
-    your interest or for the maintenance and improvement of Guess N Learn and
+    your interest or for the maintenance and improvement of AskLingua and
     its services. We will never sell or rent your personal data to third
     parties. We will share your personal data if we are required to do so by
     law – for example, by court order, or to prevent fraud or other crime.
@@ -99,18 +99,18 @@
   <h2>What cookies do we use?</h2>
 
   <h3>Functional</h3>
-  <p>These cookies are used to ensure you can correctly navigate Guess N Learn.</p>
+  <p>These cookies are used to ensure you can correctly navigate AskLingua.</p>
 
   <h3>Performance</h3>
   <p>These cookies are used to analyse trends, administer the website, track
     visitor movements and gather demographic information for aggregate use and
-    to help us improve Guess N Learn. These cookies are not personally
+    to help us improve AskLingua. These cookies are not personally
     identifiable.</p>
 
   <h3>How to manage cookies</h3>
   <p>You can set your browser to accept or reject some or all cookies. For
     instructions on managing cookies, please see your browser’s Help section or
-    visit AboutCookies.org. Be aware that some parts of Guess N Learn may not
+    visit AboutCookies.org. Be aware that some parts of AskLingua may not
     function after you change your cookie settings.</p>
 
   <h1>How long we keep your personal data</h1>
@@ -141,7 +141,7 @@
     personal data is processed, we will take reasonable steps to let you know.</p>
 
   <h2>Your rights</h2>
-  <p>You have the right to request through Guess N Learn:</p>
+  <p>You have the right to request through AskLingua:</p>
 
   <ul>
       <li>a copy of your personal data</li>

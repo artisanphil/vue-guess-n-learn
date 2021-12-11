@@ -46,7 +46,7 @@ class Guess {
       }
 
       const dialog = await dialogButtons.fire({
-        title: 'Computer Guess',
+        title: 'Lingua\'s Turn',
         html: popupContent,
         reverseButtons: true
       });

@@ -1,7 +1,14 @@
 <template>
     <main id=home>
-        <h1>Guess N Learn</h1>
-        <div id=description>Like the game "Guess Who", but for language learning</div>
+        <div id=header>
+          <div id=logo><img src="images/logo.png" alt="logo"></div>
+          <div>
+            <h1>AskLingua</h1>
+            <div id=description>
+              <p>Like the game "Guess Who", but for language learning</p>
+            </div>
+          </div>
+        </div>
 
         <div id=selectLanguage class="flex flex-wrap">
           <div>
@@ -27,13 +34,32 @@
 </template>
 
 <style>
+  #header {
+    display: inline-block;
+    margin-bottom: 10vh;
+  }
+
+  #header div {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  #logo {
+    width: 120px;
+  }
+
+  #logo > img{
+    width: 120px;
+    height: 120px;
+  }
+
   #home h1 {
-    font-size: 5rem !important;
+    font-size: 3rem !important;
     line-height: 1;
   }
 
   #description {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 3vh;
   }
   #selectLanguage {

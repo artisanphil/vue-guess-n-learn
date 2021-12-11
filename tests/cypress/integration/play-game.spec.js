@@ -30,7 +30,7 @@ function selectCharacter()
 
   cy.wait('@getObjects').then((interception) => {
 
-    cy.get('body').should('include.text', 'Please choose a character for the computer to guess');
+    cy.get('body').should('include.text', 'Please choose a character for Lingua to guess');
 
     cy.get('#Liam').click();
 

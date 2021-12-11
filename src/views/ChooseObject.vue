@@ -2,7 +2,7 @@
   <main class="container px-8 mx-auto lg:px-4">
     <div id="commandLandscape" v-show="displayCommand">
       <h1 class="text-center">
-        Please choose a character for the computer to guess
+        Please choose a character for Lingua to guess
       </h1>
     </div>
     <div class="flex" id="objectlist">
@@ -15,7 +15,7 @@
       />
       <div id="commandPortrait" v-show="displayCommand">
         <h1 class="text-center">
-          Please choose a character for the computer to guess
+          Please choose a character for Lingua to guess
         </h1>
       </div>
     </div>
