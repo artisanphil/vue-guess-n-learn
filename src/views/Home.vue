@@ -3,15 +3,25 @@
         <h1>Guess N Learn</h1>
         <div id=description>Like the game "Guess Who", but for language learning</div>
 
-        <div id=selectLanguage class="flex">
+        <div id=selectLanguage class="flex flex-wrap">
+          <div>
           <figure>
               <img id="en_us"  src="images/languages/en_us.png" @click="selectLanguage('en_us')" />
               <figcaption>American English</figcaption>
           </figure>
+          </div>
+          <div>
           <figure>
             <img id="en_uk" src="images/languages/en_uk.png" @click="selectLanguage('en_uk')" />
               <figcaption>British English</figcaption>
           </figure>
+          </div>
+          <div>
+          <figure>
+            <img id="en_uk" src="images/languages/es_es.png" @click="selectLanguage('es_es')" />
+              <figcaption>Spanish</figcaption>
+          </figure>
+          </div>
         </div>
     </main>
 </template>
@@ -24,12 +34,16 @@
 
   #description {
     font-size: 2rem;
-    margin-bottom: 10vh;
+    margin-bottom: 3vh;
+  }
+  #selectLanguage {
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  #selectLanguage > div {
+    margin: 1vh auto;
   }
 
-  #selectLanguage {
-    justify-content: center;;
-  }
   #selectLanguage img {
     cursor: pointer;
     width: 20vh;
@@ -50,6 +64,7 @@ export default class Home extends Vue {
     await get<string>("/api/learn-language/" + languageCode);
   }
   async selectLanguage(languageCode: string): Promise<void> {
+    localStorage.setItem('learn-language', languageCode);
     await this.saveLanguage(languageCode);
     router.push("choose-object");
   }
