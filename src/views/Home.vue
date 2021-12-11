@@ -10,6 +10,9 @@
           </div>
         </div>
 
+        <div id=detail><p>Play a game against Lingua, the clever cockatoo.</p>
+          <p>Learn how to ask questions in the language you are learning.</p>
+        </div>
         <div id=selectLanguage class="flex flex-wrap">
           <div>
           <figure>
@@ -36,12 +39,13 @@
 <style>
   #header {
     display: inline-block;
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
   }
 
   #header div {
     display: inline-block;
     margin: 0 10px;
+    vertical-align: middle;
   }
 
   #logo {
@@ -62,6 +66,18 @@
     font-size: 1.5rem;
     margin-bottom: 3vh;
   }
+
+  #detail {
+    margin: 0 auto;
+    padding: 3px;
+    width: 90%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px;
+    font-size: 1.2rem;
+    margin-bottom: 10vh;
+  }
+
   #selectLanguage {
     margin: 0 auto;
     max-width: 800px;
