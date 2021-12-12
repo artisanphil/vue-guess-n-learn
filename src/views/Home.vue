@@ -8,6 +8,7 @@
               <p>Like the game "Guess Who", but for language learning</p>
             </div>
           </div>
+          <div id=filler></div>
         </div>
 
         <div id=detail><p>Play a game against Lingua, the clever cockatoo.</p>
@@ -48,7 +49,7 @@
     vertical-align: middle;
   }
 
-  #logo {
+  #logo, #filler {
     width: 120px;
   }
 
