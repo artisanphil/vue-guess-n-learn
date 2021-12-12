@@ -51,7 +51,7 @@ export default defineComponent({
         let input = document.getElementById('gap') as HTMLInputElement;
         let data = {
           type: 'gap',
-          chosenAttribute: this.attributeValue,
+          chosenAttribute: this.attributeKey,
           answerAttribute: input.value
         };
         let response = await post<any>("/api/user-guess/verify-attribute", data);
