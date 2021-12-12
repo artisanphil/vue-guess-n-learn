@@ -8,7 +8,7 @@
       v-for="(attribute, index) in attributes"
       @click="select(index)"
     >
-      <div class="attributeText">
+      <div class="attributeText" v-resize-text="{minFontSize: '12px', maxFontSize: '18px', delay: 200}">
         {{ attribute.name }}
       </div>
       <img class="attributeImage inline" v-bind:src="attribute.image" />
@@ -28,6 +28,7 @@
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
     font-size: 3vh;
+    white-space: nowrap;
   }
   .attributeImage {
     height: 11.5vh;
@@ -45,6 +46,7 @@
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
     font-size: 2vh;
+    white-space: nowrap;
   }
   .attributeImage {
     height: 8vh;
