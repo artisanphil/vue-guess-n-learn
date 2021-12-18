@@ -11,8 +11,8 @@
           <div id=filler></div>
         </div>
 
-        <div id=detail><p>Play a game against Lingua, the clever cockatoo.</p>
-          <p>Learn how to ask questions in the language you are learning.</p>
+        <div id=detail><p>Play a game against Lingua the clever cockatoo,</p>
+                      <p>by asking questions in the language you are learning.</p>
         </div>
         <div id=selectLanguage class="flex flex-wrap">
           <div>
@@ -107,7 +107,6 @@ export default class Home extends Vue {
     await get<string>("/api/learn-language/" + languageCode);
   }
   async selectLanguage(languageCode: string): Promise<void> {
-    localStorage.setItem('learn-language', languageCode);
     await this.saveLanguage(languageCode);
     router.push("choose-object");
   }
