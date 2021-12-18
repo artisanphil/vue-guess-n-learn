@@ -4,6 +4,30 @@ import ChooseObject from '../views/ChooseObject.vue'
 import AskQuestion from '../views/AskQuestion.vue'
 import PickAttribute from '../views/PickAttribute.vue'
 import GameOver from '../views/GameOver.vue'
+import { get } from "../helpers/http";
+
+async function redirectIfNoObjectSelected (to, from, next) {
+  const user = await get<string>("/api/select");
+  if (user.length == 0) {
+    next({
+      name: "Home"
+    });
+  } else {
+    next()
+  }
+}
+
+async function redirectIfNoLanguageSelected (to, from, next) {
+  const language = await get<string>("/api/learn-language");
+  if (language['learn-language'].length == 0) {
+    next({
+      name: "Home"
+    });
+  } else {
+    next()
+  }
+}
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -28,22 +52,26 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/choose-object',
     name: 'ChooseObject',
-    component: ChooseObject
+    component: ChooseObject,
+    beforeEnter: redirectIfNoLanguageSelected
   },
   {
     path: '/pick-attribute',
     name: 'PickAttribute',
-    component: PickAttribute
+    component: PickAttribute,
+    beforeEnter: redirectIfNoObjectSelected
   },
   {
     path: '/ask-question',
     name: 'AskQuestion',
-    component: AskQuestion
+    component: AskQuestion,
+    beforeEnter: redirectIfNoObjectSelected
   },
   {
     path: '/game-over',
     name: 'GameOver',
-    component: GameOver
+    component: GameOver,
+    beforeEnter: redirectIfNoObjectSelected
   }
 ]
 
