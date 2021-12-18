@@ -34,6 +34,15 @@
           </figure>
           </div>
         </div>
+        <div id=stayinformed>
+          <hr>
+          <br />
+          <h3>Stay informed on new features</h3>
+          <p>We have many more things planned, for instance:</p>
+          <p>Android/iOS app, leaderboard, more languages, other things to guess, etc. </p>
+          <p class=signup><a href="https://twitter.com/AskLingua" target="_blank">Follow AskLingua on Twitter</a> or
+          <a href="https://asklingua.us20.list-manage.com/subscribe?u=33a92fb170de7e1d490b68911&id=39ff1526de" target="_blank">subscribe to the newsletter.</a></p>
+        </div>
     </main>
 </template>
 
@@ -61,6 +70,10 @@
   #home h1 {
     font-size: 3rem !important;
     line-height: 1;
+  }
+
+  h3 {
+    font-size: 1.5rem !important;
   }
 
   #description {
@@ -92,6 +105,18 @@
     width: 20vh;
     margin-right: 2vw;
     margin-left: 2vw;
+  }
+
+  #stayinformed {
+    margin-top: 2vh;
+  }
+
+  .signup {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  .signup a {
+    text-decoration: underline;
   }
 </style>
 
