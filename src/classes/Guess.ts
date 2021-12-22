@@ -14,7 +14,7 @@ class Guess {
         question.choice = computerChoice ?? '';
 
         //@todo use tailwind
-        const wrong = "<span style=\"color:red;\">Wrong!</span><br />";
+        const wrong = "<span style=\"color:red;\">Wrong answer!</span><br />";
         question.sentence = wrong + sentence;
 
         return question;
@@ -36,7 +36,8 @@ class Guess {
           questionSentence = question.sentence;
       }
 
-      let popupContent = '<img src="' + image + '" style="margin:auto; height: 40vh;">' + questionSentence;
+      let popupContent = 'You have chosen<br><div id=your-selection-popup><img src="' + image + '" style="margin:auto; height: 40vh;"/></div>'
+       + '<div style="display: inline-flex;"><div><img src="/images/logo.png" style="height:10vh;"></div><div style="align-self: end;"><h3>' + questionSentence + '</h3></div></div>';
 
       if(question.choice == '') {
           dialogButtons = Swal.mixin({
@@ -46,7 +47,7 @@ class Guess {
       }
 
       const dialog = await dialogButtons.fire({
-        title: 'Lingua\'s Turn',
+        title: 'Lingua\'s turn to guess',
         html: popupContent,
         reverseButtons: true
       });

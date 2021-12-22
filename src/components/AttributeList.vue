@@ -1,8 +1,7 @@
 <template>
   <div id="container" class="grid w-full">
     <div
-      id="attributes"
-      class="border hover:shadow-lg cursor-pointer"
+      class="attributes border hover:shadow-lg cursor-pointer"
       style="width: 100%; vertical-align: center"
       :key="index"
       v-for="(attribute, index) in attributes"
@@ -21,8 +20,9 @@
   #container {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-  #attributes {
+  .attributes {
     height: 18vh;
+    block-size: fit-content;
   }
   .attributeText {
     margin-top: 0.5vh;
