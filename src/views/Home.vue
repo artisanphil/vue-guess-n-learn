@@ -14,6 +14,7 @@
         <div id=detail><p>Play a game against Lingua the clever cockatoo,</p>
                       <p>by asking questions in the language you are learning.</p>
         </div>
+        <div id=selectLangaugeText>Select the language you want to learn</div>
         <div id=selectLanguage class="flex flex-wrap">
           <div>
           <figure>
@@ -47,6 +48,23 @@
 </template>
 
 <style>
+  body {
+        background-color: rgb(230, 255, 255, 0.2);
+  }
+
+  main {
+    background-color: #FFFFFF;
+  }
+
+  #home {
+    max-width: 800px;
+    margin: 2vh auto;
+    border-radius: 25px;
+    border: 2px solid #000099;
+    color: #000099;
+    padding: 1vh;
+  }
+
   #header {
     display: inline-block;
     margin-bottom: 5vh;
@@ -89,12 +107,17 @@
     border: 1px solid #ccc;
     box-shadow: 5px 5px;
     font-size: 1.2rem;
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
   }
 
+  #selectLangaugeText {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 1vh;
+  }
   #selectLanguage {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 600px;
   }
   #selectLanguage > div {
     margin: 1vh auto;
@@ -117,6 +140,27 @@
   }
   .signup a {
     text-decoration: underline;
+  }
+
+  @media (max-width:480px) {
+    #header {
+      margin-bottom: 1vh;
+    }
+
+    #detail {
+      margin-bottom: 3vh;
+    }
+
+    #home {
+      margin: 0 auto;
+      border: none;
+    }
+
+    #selectLangaugeText {
+      margin-left: 5vh;
+      margin-right: 5vh;
+    }
+
   }
 </style>
 

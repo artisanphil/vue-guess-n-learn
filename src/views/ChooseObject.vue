@@ -1,10 +1,5 @@
 <template>
   <main class="container px-8 mx-auto lg:px-4">
-    <div id="commandLandscape" v-show="displayCommand">
-      <h1 class="text-center">
-        Please choose a character for Lingua to guess
-      </h1>
-    </div>
     <div class="flex" id="objectlist">
       <ObjectList @messageFromChild="objectSelected" />
       <SelectedCharacter
@@ -13,16 +8,15 @@
         :displayAskButton="displayAskButton"
         @messageFromChild="computerGuess"
       />
-      <div id="commandPortrait" v-show="displayCommand">
-        <h1 class="text-center">
-          Please choose a character for Lingua to guess
-        </h1>
-      </div>
     </div>
   </main>
 </template>
 
 <style>
+#your-selection-popup {
+  border: 1px solid #ccc;
+}
+
 @media (orientation: landscape) {
   #container {
     margin-top: 1vh;
@@ -99,6 +93,11 @@ export default class ChooseObject extends Vue {
       this.characterSelected = true;
       this.displayAskButton = true;
       this.displayCommand = false;
+    } else {
+      Swal.fire({
+        title: "Your turn",
+        text: 'Please choose a character for Lingua to guess'
+      });
     }
   }
 
@@ -165,16 +164,33 @@ export default class ChooseObject extends Vue {
             this.yourSelection = ObjectClass.getImage(object);
             this.characterSelected = true;
             this.displayCommand = false;
-            this.computerGuess();
+            this.computerSelection();
         })
       }
     });
   }
 
+  async computerSelection(): Promise<void> {
+    await Swal.fire({
+      title: "Lingua's turn to choose",
+      text: 'Lingua is selecting a character for you to guess...',
+      timer: 3000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      }).then(() => {
+        Swal.fire({
+          title: 'Lingua has made a choice',
+          html: '<img src="/images/characters/unknown.png" style="margin:auto; height: 40vh;">',
+          }).then(() => {
+              this.computerGuess();
+          });
+      });
+  }
+
   async readyToGuessPopup(name: string): Promise<void> {
     await Swal.fire({
       title: `Are you sure "${name}" is the correct character?`,
-      html: '<p style="color:red;">Warning! If you fail you\'ll lose.</p>Click "Continue" to ask more questions.',
+      html: '<p style="color:red;">Warning! If you get this wrong you\'ll lose.</p>Click "Continue" to ask more questions.',
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",

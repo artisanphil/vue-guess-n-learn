@@ -12,6 +12,7 @@
 import { defineComponent } from "vue";
 import AttributeList from "../components/AttributeList.vue";
 import { get } from "../helpers/http";
+import Swal from "sweetalert2";
 import router from "../router";
 
 export default defineComponent({
@@ -24,6 +25,13 @@ export default defineComponent({
   },
   components: {
     AttributeList,
+  },
+  created(): void {
+    console.log('PickAttribute created');
+    Swal.fire({
+      title: "Your turn to ask",
+      text: 'Please select one of the images'
+    });
   },
   methods: {
     async attributeSelected(index: number): Promise<void> {
