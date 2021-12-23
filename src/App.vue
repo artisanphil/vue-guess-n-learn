@@ -79,4 +79,8 @@
     }
   }
 }
+
+.swal-title {
+  white-space: nowrap;
+}
 </style>

@@ -67,8 +67,16 @@ export default defineComponent({
     yourSelection: String,
     displayAskButton: Boolean,
   },
+  data() {
+    return {
+      confirmButtonDisabled: false,
+    };
+  },
   methods: {
     computerGuess(): void {
+      if (this.confirmButtonDisabled) return;
+
+      this.confirmButtonDisabled = true;
       this.$emit("messageFromChild");
     },
   },

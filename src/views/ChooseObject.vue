@@ -48,7 +48,11 @@
     display: none;
   }
   #objectlist {
-    flex-direction: column-reverse;
+    flex-direction: column;
+  }
+
+  #objectselection {
+    margin-top: 2vh;
   }
 }
 </style>
@@ -84,8 +88,10 @@ export default class ChooseObject extends Vue {
   protected characterSelected: boolean = false as boolean;
   protected displayAskButton: boolean = false as boolean;
   protected displayCommand: boolean = true as boolean;
+  protected objectSelectDisabled: boolean = false as boolean;
 
   async created(): Promise<void> {
+    window.scrollTo(0,document.body.scrollHeight);
     if (Object.keys(this.$route.params).length > 0) {
       let objectSelected = await get<IObject>("/api/select");
 
@@ -110,6 +116,9 @@ export default class ChooseObject extends Vue {
     }
 
     if (!this.characterSelected) {
+      if (this.objectSelectDisabled) return;
+
+      this.objectSelectDisabled = true;
       this.displaySelection(name, object);
     } else {
       this.readyToGuessPopup(name);
