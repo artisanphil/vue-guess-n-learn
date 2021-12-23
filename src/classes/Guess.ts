@@ -5,7 +5,7 @@ import { IObject } from "../interfaces/IObject";
 import ObjectClass from "../classes/ObjectClass";
 
 class Guess {
-    async getComputerQuestion(sentence?: string, computerChoice?: string): Promise<IComputerGuess> {
+    async getComputerQuestion(count: number, sentence?: string, computerChoice?: string): Promise<IComputerGuess> {
         if (sentence == null) {
             return await get<IComputerGuess>("/api/computer-guess");
         }
@@ -13,9 +13,12 @@ class Guess {
         const question: IComputerGuess = {} as IComputerGuess;
         question.choice = computerChoice ?? '';
 
-        //@todo use tailwind
-        const wrong = "<span style=\"color:red;\">Wrong answer!</span><br />";
-        question.sentence = wrong + sentence;
+        if (count == 1) {
+            const wrong = "<span style=\"color:red;\">Wrong answer!</span><br />";
+            question.sentence = wrong + sentence;
+        } else {
+            question.sentence = sentence;
+        }
 
         return question;
     }
