@@ -117,10 +117,12 @@ export default class ChooseObject extends Vue {
   }
 
   async computerGuess(
+    count: number,
     sentence?: string,
     computerChoice?: string
   ): Promise<void> {
     let question = await GuessClass.getComputerQuestion(
+      count,
       sentence,
       computerChoice
     );
@@ -135,7 +137,8 @@ export default class ChooseObject extends Vue {
     let response = await post<any>("/api/computer-guess", data);
 
     if (answer !== response.correct) {
-      return this.computerGuess(question.sentence, question.choice);
+      count++;
+      return this.computerGuess(count, question.sentence, question.choice);
     }
 
     router.push("pick-attribute");
@@ -182,7 +185,7 @@ export default class ChooseObject extends Vue {
           title: 'Lingua has made a choice',
           html: '<img src="/images/characters/unknown.png" style="margin:auto; height: 40vh;">',
           }).then(() => {
-              this.computerGuess();
+              this.computerGuess(0);
           });
       });
   }
@@ -200,7 +203,7 @@ export default class ChooseObject extends Vue {
       if (result.isConfirmed) {
         this.guessObject(name);
       } else {
-        this.computerGuess();
+        this.computerGuess(0);
       }
     });
   }
