@@ -28,7 +28,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
 #content {
@@ -75,7 +74,7 @@
     font-size: 0.8rem;
 
     &.router-link-exact-active {
-      color: darkblue;
+      color: #2c3e50;
     }
   }
 }

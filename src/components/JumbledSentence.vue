@@ -53,7 +53,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Swal from "sweetalert2";
-import { post } from "../helpers/http";
+import { getResponse, post } from "../helpers/http";
 
 export default defineComponent({
 	name: "JumbledSentence",
@@ -67,6 +67,16 @@ export default defineComponent({
     };
   },
   methods: {
+    async correctSentence(attribute: string): Promise<void>
+    {
+        let params = [
+          ['chosenAttribute', attribute],
+        ];
+        let response = await getResponse<any>("/api/user-guess/correct-sentence", params);
+        let answer = Object.values(await response.json() as any[]);
+
+        return answer[0];
+    },
     select(word: string): void {
       if (this.answer.length > 0) {
         this.answer += " ";
@@ -98,7 +108,7 @@ export default defineComponent({
               confirmButtonText: "Skip",
           }).then((result) => {
             if (result.isConfirmed) {
-              this.continue(data.answerSentence);
+              this.skip();
             } else {
               Swal.close()
             }
@@ -111,7 +121,16 @@ export default defineComponent({
             sentenceAnswer: answer
       }
       this.$emit('messageFromChild', data);
+    },
+    async skip(): Promise<void> {
+      let correctSentence= await this.correctSentence(this.attributeKey);
+      let data = {
+            choice: this.attributeKey,
+            sentenceAnswer: correctSentence
+      }
+      this.$emit('messageFromChild', data);
     }
+
   }
 })
 </script>

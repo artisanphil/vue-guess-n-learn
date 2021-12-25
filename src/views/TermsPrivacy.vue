@@ -149,5 +149,9 @@
       <li>the correction of any inaccuracies in your personal data</li>
       <li>the erasure of your personal data if its storage is no longer justified</li>
   </ul>
+
+  <h1>Credit</h1>
+
+  <div>Language flag icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   </div>
 </template>

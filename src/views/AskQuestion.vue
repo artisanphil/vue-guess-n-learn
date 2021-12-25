@@ -93,10 +93,13 @@ export default defineComponent({
     async questionSelected(data: any): Promise<void> {
       let response = await post<any>("/api/user-guess", data);
       let answer = response.correct ? "Yes" : "No";
+      let answerSentence = data.sentenceAnswer + '<br><br>'
+        + '<div style="display: inline-flex;"><div><img src="/images/logo.png" style="height:10vh;"></div>'
+        + '<div style="align-self: end;"><h3>' + answer + '</h3></div></div>';
 
       Swal.fire({
         title: "You asked:",
-        html: data.sentenceAnswer + "<br><br><b>Answer</b>: " + answer,
+        html: answerSentence,
         confirmButtonText: "OK",
       });
 
