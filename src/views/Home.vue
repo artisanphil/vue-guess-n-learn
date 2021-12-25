@@ -1,14 +1,13 @@
 <template>
     <main id=home>
         <div id=header>
-          <div id=logo><img src="images/logo.png" alt="logo"></div>
-          <div>
-            <h1>AskLingua</h1>
-            <div id=description>
-              <p>Like the game "Guess Who", but for language learning</p>
-            </div>
-          </div>
-          <div id=filler></div>
+          <div id=logo>
+            <h1><img src="images/logo.png" alt="AskLingua"></h1>
+           </div>
+        </div>
+
+        <div id=description>
+          <p>Like the game "Guess Who", but for language learning</p>
         </div>
 
         <div id=detail><p>Play a game against Lingua the clever cockatoo,</p>
@@ -18,19 +17,19 @@
         <div id=selectLanguage class="flex flex-wrap">
           <div>
           <figure>
-              <img id="en_us"  src="images/languages/en_us.png" @click="selectLanguage('en_us')" />
+              <img id="en_us" class=flag src="images/languages/en_us.png" @click="selectLanguage('en_us')" />
               <figcaption>American English</figcaption>
           </figure>
           </div>
           <div>
           <figure>
-            <img id="en_uk" src="images/languages/en_uk.png" @click="selectLanguage('en_uk')" />
+            <img id="en_uk" class=flag src="images/languages/en_uk.png" @click="selectLanguage('en_uk')" />
               <figcaption>British English</figcaption>
           </figure>
           </div>
           <div>
           <figure>
-            <img id="en_uk" src="images/languages/es_es.png" @click="selectLanguage('es_es')" />
+            <img id="en_uk" class=flag src="images/languages/es_es.png" @click="selectLanguage('es_es')" />
               <figcaption>Spanish</figcaption>
           </figure>
           </div>
@@ -48,20 +47,12 @@
 </template>
 
 <style>
-  body {
-        background-color: rgb(230, 255, 255, 0.2);
-  }
-
-  main {
-    background-color: #FFFFFF;
-  }
 
   #home {
-    max-width: 800px;
+    /* max-width: 800px; */
+    background-color: rgba(230,255,255,.2);
+    color: darkorange;
     margin: 2vh auto;
-    border-radius: 25px;
-    border: 2px solid #000099;
-    color: #000099;
     padding: 1vh;
   }
 
@@ -76,13 +67,13 @@
     vertical-align: middle;
   }
 
-  #logo, #filler {
-    width: 120px;
+  #logo {
+    width: 80px;
   }
 
   #logo > img{
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
   }
 
   #home h1 {
@@ -95,6 +86,7 @@
   }
 
   #description {
+    font-weight: bold;
     font-size: 1.5rem;
     margin-bottom: 3vh;
   }
@@ -104,15 +96,13 @@
     padding: 3px;
     width: 90%;
     max-width: 600px;
-    border: 1px solid #ccc;
-    box-shadow: 5px 5px;
     font-size: 1.2rem;
     margin-bottom: 5vh;
   }
 
   #selectLangaugeText {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 1vh;
   }
   #selectLanguage {
@@ -125,7 +115,7 @@
 
   #selectLanguage img {
     cursor: pointer;
-    width: 20vh;
+    width: 60px;
     margin-right: 2vw;
     margin-left: 2vw;
   }

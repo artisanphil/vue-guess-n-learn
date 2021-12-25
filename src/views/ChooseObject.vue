@@ -91,8 +91,8 @@ export default class ChooseObject extends Vue {
   protected objectSelectDisabled: boolean = false as boolean;
 
   async created(): Promise<void> {
-    window.scrollTo(0,document.body.scrollHeight);
     if (Object.keys(this.$route.params).length > 0) {
+      window.scrollTo(0,document.body.scrollHeight);
       let objectSelected = await get<IObject>("/api/select");
 
       this.yourSelection = ObjectClass.getImage(objectSelected);
