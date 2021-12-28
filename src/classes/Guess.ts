@@ -5,33 +5,30 @@ import { IObject } from "../interfaces/IObject";
 import ObjectClass from "../classes/ObjectClass";
 
 class Guess {
-    async getComputerQuestion(count: number, sentence?: string, computerChoice?: string): Promise<IComputerGuess> {
-        if (sentence == null) {
+    async getComputerQuestion(count: number, question?: IComputerGuess): Promise<IComputerGuess> {
+        if (question === undefined) {
             return await get<IComputerGuess>("/api/computer-guess");
         }
 
-        const question: IComputerGuess = {} as IComputerGuess;
-        question.choice = computerChoice ?? '';
+        question.choice = question.choice ?? '';
 
         if (count == 1) {
             const wrong = "<span style=\"color:red;\">Wrong answer!</span><br />";
-            question.sentence = wrong + sentence;
-        } else {
-            question.sentence = sentence;
-        }
+            question.sentence = wrong + question.sentence;
+        } 
 
         return question;
     }
 
     async displayGuessDialog(question: IComputerGuess): Promise<boolean>
     {
+      const objectSelected = await get<IObject>("/api/select");
       let dialogButtons = Swal.mixin({
           showCancelButton: true,
-          confirmButtonText: 'Yes',
-          cancelButtonText: 'No',
+          confirmButtonText: question.Yes,
+          cancelButtonText: question.No,
       });
 
-      const objectSelected = await get<IObject>("/api/select");
       const image = ObjectClass.getImage(objectSelected)
       let questionSentence = '';
 
@@ -52,7 +49,7 @@ class Guess {
       const dialog = await dialogButtons.fire({
         title: 'Lingua\'s turn to guess',
         html: popupContent,
-        reverseButtons: true
+        reverseButtons: true,
       });
 
       return dialog.isConfirmed;

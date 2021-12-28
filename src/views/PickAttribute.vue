@@ -27,7 +27,6 @@ export default defineComponent({
     AttributeList,
   },
   created(): void {
-    console.log('PickAttribute created');
     Swal.fire({
       title: "Your turn to ask",
       text: 'Please select one of the images'
