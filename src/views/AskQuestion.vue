@@ -92,9 +92,9 @@ export default defineComponent({
   methods: {
     async questionSelected(data: any): Promise<void> {
       let response = await post<any>("/api/user-guess", data);
-      let answer = response.correct ? "Yes" : "No";
+      let answer = response.correct ? response.Yes : response.No;
       let answerSentence = data.sentenceAnswer + '<br><br>'
-        + '<div style="display: inline-flex;"><div><img src="/images/logo.png" style="height:10vh;"></div>'
+        + '<div style="display: inline-flex;"><div><img src="/images/logo.png" style="height:10vh; margin-right: 5px;"></div>'
         + '<div style="align-self: end;"><h3>' + answer + '</h3></div></div>';
 
       Swal.fire({
@@ -118,7 +118,6 @@ export default defineComponent({
 
       number++;
       localStorage.setItem('qNumber', number.toString());
-      console.log(number);
 
       if (number === 1 || number === 4) {
         return "multiple-choice";

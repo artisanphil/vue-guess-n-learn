@@ -1,5 +1,5 @@
 <template>
-  <main class="container px-8 mx-auto lg:px-4">
+  <main class="container px-8 mx-auto mt-2 lg:px-4">
     <div class="flex" id="objectlist">
       <ObjectList @messageFromChild="objectSelected" />
       <SelectedCharacter
@@ -67,6 +67,7 @@ import GuessClass from "../classes/Guess";
 import ObjectClass from "../classes/ObjectClass";
 import { get, post } from "../helpers/http";
 import router from "../router";
+import { IComputerGuess } from "../interfaces/IComputerGuess";
 
 @Options({
   data: () => {
@@ -127,14 +128,14 @@ export default class ChooseObject extends Vue {
 
   async computerGuess(
     count: number,
-    sentence?: string,
-    computerChoice?: string
+    question?: IComputerGuess
   ): Promise<void> {
-    let question = await GuessClass.getComputerQuestion(
-      count,
-      sentence,
-      computerChoice
-    );
+    if(question === undefined) {
+      question = await GuessClass.getComputerQuestion(
+        count,
+        question
+      );
+    }
     let answer = await GuessClass.displayGuessDialog(question);
 
     if (question.choice == "") {
@@ -147,7 +148,7 @@ export default class ChooseObject extends Vue {
 
     if (answer !== response.correct) {
       count++;
-      return this.computerGuess(count, question.sentence, question.choice);
+      return this.computerGuess(count, question);
     }
 
     router.push("pick-attribute");
