@@ -130,12 +130,15 @@ export default class ChooseObject extends Vue {
     count: number,
     question?: IComputerGuess
   ): Promise<void> {
-    if(question === undefined) {
-      question = await GuessClass.getComputerQuestion(
-        count,
-        question
-      );
+    if(count === undefined) {
+      count = 0
     }
+
+    question = await GuessClass.getComputerQuestion(
+      count,
+      question
+    );    
+
     let answer = await GuessClass.displayGuessDialog(question);
 
     if (question.choice == "") {
@@ -148,7 +151,7 @@ export default class ChooseObject extends Vue {
 
     if (answer !== response.correct) {
       count++;
-      return this.computerGuess(count, question);
+      return await this.computerGuess(count, question);
     }
 
     router.push("pick-attribute");
