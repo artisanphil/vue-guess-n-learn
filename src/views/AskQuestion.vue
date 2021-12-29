@@ -94,7 +94,7 @@ export default defineComponent({
       let response = await post<any>("/api/user-guess", data);
       let answer = response.correct ? response.Yes : response.No;
       let answerSentence = data.sentenceAnswer + '<br><br>'
-        + '<div style="display: inline-flex;"><div><img src="/images/logo.png" style="height:10vh; margin-right: 5px;"></div>'
+        + '<div style="display: inline-flex;"><div><img src="/images/icon.png" style="height:10vh; margin-right: 5px;"></div>'
         + '<div style="align-self: end;"><h3>' + answer + '</h3></div></div>';
 
       Swal.fire({

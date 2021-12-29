@@ -51,14 +51,14 @@
   #home {
     /* max-width: 800px; */
     background-color: rgba(230,255,255,.2);
-    color: darkorange;
+    color: #ff8c00;
     margin: 2vh auto;
     padding: 1vh;
   }
 
   #header {
     display: inline-block;
-    margin-bottom: 5vh;
+    margin-bottom: 0.5vh;
   }
 
   #header div {
@@ -68,12 +68,7 @@
   }
 
   #logo {
-    width: 80px;
-  }
-
-  #logo > img{
-    width: 80px;
-    height: 80px;
+    width: 70%;
   }
 
   #home h1 {
