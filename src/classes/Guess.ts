@@ -37,7 +37,7 @@ class Guess {
       }
 
       let popupContent = 'You have chosen<br><div id=your-selection-popup><img src="' + image + '" style="margin:auto; height: 40vh;"/></div>'
-       + '<div style="display: inline-flex;"><div><img src="/images/logo.png" style="height:10vh;"></div><div style="align-self: end;"><h3>' + questionSentence + '</h3></div></div>';
+       + '<div style="display: inline-flex;"><div><img src="/images/icon.png" style="height:10vh;"></div><div style="align-self: end;"><h3>' + questionSentence + '</h3></div></div>';
 
       if(question.choice == '') {
           dialogButtons = Swal.mixin({
