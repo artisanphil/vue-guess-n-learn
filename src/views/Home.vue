@@ -106,17 +106,22 @@
   }
   #selectLanguage > div {
     margin: 1vh auto;
+    width: 33%;
   }
 
   #selectLanguage img {
     cursor: pointer;
     width: 60px;
-    margin-right: 2vw;
-    margin-left: 2vw;
+    margin: 0 auto;
   }
 
   #stayinformed {
     margin-top: 2vh;
+    color: #2c3e50;
+  }
+
+  #stayinformed p {
+    line-height: 1.8;
   }
 
   .signup {
