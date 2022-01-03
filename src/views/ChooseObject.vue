@@ -190,9 +190,9 @@ export default class ChooseObject extends Vue {
     await Swal.fire({
       title: "Lingua's turn to choose",
       text: 'Lingua is selecting a character for you to guess...',
-      //timer: 3000,
-      //timerProgressBar: true,
-      showConfirmButton: true,
+      timer: 3000,
+      timerProgressBar: true,
+      showConfirmButton: false,
       }).then(() => {
         Swal.fire({
           title: 'Lingua has made a choice',
