@@ -75,7 +75,7 @@ import { IComputerGuess } from "../interfaces/IComputerGuess";
       yourSelection: "",
       characterSelected: false,
       displayAskButton: false,
-      displayCommand: true,
+      displayCommand: true,      
     };
   },
   components: {
@@ -91,7 +91,7 @@ export default class ChooseObject extends Vue {
   protected displayCommand: boolean = true as boolean;
   protected objectSelectDisabled: boolean = false as boolean;
 
-  async created(): Promise<void> {
+  async created(): Promise<void> {    
     if (Object.keys(this.$route.params).length > 0) {
       window.scrollTo(0,document.body.scrollHeight);
       let objectSelected = await get<IObject>("/api/select");
@@ -176,7 +176,7 @@ export default class ChooseObject extends Vue {
     }).then((result) => {
       if (result.isConfirmed) {
         post<any>("/api/select", data).then(() => {
-            localStorage.clear();
+            localStorage.removeItem('qNumber');
             this.yourSelection = ObjectClass.getImage(object);
             this.characterSelected = true;
             this.displayCommand = false;
