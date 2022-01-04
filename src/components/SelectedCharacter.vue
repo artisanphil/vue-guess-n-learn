@@ -11,7 +11,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </div>  
 </template>
 
 <style>
@@ -21,7 +21,7 @@
     align-items: center;
   }
 
-    #your-selection img {
+  #your-selection img {
       max-width: 200px;
   }
 
@@ -70,6 +70,7 @@ export default defineComponent({
   data() {
     return {
       confirmButtonDisabled: false,
+      spanish: localStorage.getItem('learn-language') === 'es_es'
     };
   },
   methods: {
