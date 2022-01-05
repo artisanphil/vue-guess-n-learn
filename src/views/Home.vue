@@ -67,10 +67,6 @@
     vertical-align: middle;
   }
 
-  #logo {
-    width: 70%;
-  }
-
   #home h1 {
     font-size: 3rem !important;
     line-height: 1;
@@ -117,7 +113,7 @@
 
   #stayinformed {
     margin-top: 2vh;
-    color: #2c3e50;
+    color: #A52A2A;
   }
 
   #stayinformed p {
