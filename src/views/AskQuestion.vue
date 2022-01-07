@@ -22,6 +22,10 @@
         :attributeKey="attributeKey"
         @messageFromChild="questionSelected"
       />
+
+      <div class=mt-5>
+        Ad: <a href="https://www.italki.com/affshare?ref=asklingua" class="text-red-500 underline" target="_blank">Receive feedback from native speakers and professional teachers</a>
+      </div>
     </div>
   </main>
 </template>

@@ -4,6 +4,10 @@
       <AttributeList
         @messageFromChild="attributeSelected"
       />
+  
+      <div class=mt-5>
+        Ad: <a href="https://academy.mosalingua.com/mosaweb/?ref=982" class="text-red-800 underline" target="_blank">Memorize useful words and phrases with the powerful MosaLearning® method</a>
+      </div>
     </div>
   </main>
 </template>
