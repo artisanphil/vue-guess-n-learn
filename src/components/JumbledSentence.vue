@@ -126,7 +126,8 @@ export default defineComponent({
       let correctSentence= await this.correctSentence(this.attributeKey);
       let data = {
             choice: this.attributeKey,
-            sentenceAnswer: correctSentence
+            sentenceAnswer: correctSentence,
+            skipped: true
       }
       this.$emit('messageFromChild', data);
     }
