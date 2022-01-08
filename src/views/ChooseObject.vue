@@ -1,11 +1,15 @@
 <template>
   <main class="container px-8 mx-auto mt-2 lg:px-4">
     <div class="flex" id="objectlist">
-      <ObjectList @messageFromChild="objectSelected" />
+      <ObjectList 
+        :allObjects="allObjects" 
+        :matchingObjects="matchingObjects"
+        @messageFromChild="objectSelected" />
       <SelectedCharacter
         v-if="characterSelected"
         :yourSelection="yourSelection"
         :displayAskButton="displayAskButton"
+        :matchingObjectsCount="matchingObjectsCount"
         @messageFromChild="computerGuess"
       />
     </div>
@@ -75,7 +79,10 @@ import { IComputerGuess } from "../interfaces/IComputerGuess";
       yourSelection: "",
       characterSelected: false,
       displayAskButton: false,
-      displayCommand: true,      
+      displayCommand: true,     
+      allObjects: [],
+      matchingObjects: [],
+      matchingObjectsCount: 0,
     };
   },
   components: {
@@ -90,8 +97,20 @@ export default class ChooseObject extends Vue {
   protected displayAskButton: boolean = false as boolean;
   protected displayCommand: boolean = true as boolean;
   protected objectSelectDisabled: boolean = false as boolean;
+  protected allObjects: Array<IObject> = [];
+  protected matchingObjects: Array<any> = [];
+  protected matchingObjectsCount: number = 0 as number;
 
   async created(): Promise<void> {    
+    let matchingJSON = this.$route.params.matching;
+
+    if(matchingJSON) {
+      this.matchingObjects = JSON.parse(matchingJSON.toString());
+      this.matchingObjectsCount = this.matchingObjects.length;
+    }
+
+    this.allObjects = await get<Array<IObject>>("/api/index");
+
     if (Object.keys(this.$route.params).length > 0) {
       window.scrollTo(0,document.body.scrollHeight);
       let objectSelected = await get<IObject>("/api/select");
