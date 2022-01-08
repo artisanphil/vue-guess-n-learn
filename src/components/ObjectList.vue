@@ -68,53 +68,53 @@
 </style>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
 import { IObject } from "../interfaces/IObject";
 import ObjectClass from "../classes/ObjectClass";
-import { get } from "../helpers/http";
+import { defineComponent } from "vue";
 
-export default class ObjectList extends Vue {
-
-  protected objects: Array<IObject> = [];
-
-  async created(): Promise<void> {
-    let allObjects = await get<Array<IObject>>("/api/index");
-
-    this.objects = this.setObjectsActiveState(allObjects);
-  }
-
-  select(index: number): void {
-    this.$emit('messageFromChild', this.objects, index);
-  }
-
-  setObjectsActiveState(allObjects: Array<IObject>): Array<IObject> {
-    let matchingJSON = this.$route.params.matching;
-    let matchingNames = [];
-
-    if(matchingJSON) {
-      matchingNames = JSON.parse(matchingJSON.toString());
+export default defineComponent({
+  name: "ObjectList",
+  props: {
+    allObjects: Array,
+    matchingObjects: Array,
+  },
+  data() {
+    return {
+      objects: []      
     }
+  },
+  watch: { 
+    allObjects: function() { 
+      this.objects = this.setObjectsActiveState(this.allObjects);
+    }
+  },
+  methods: {
+    select(index: number): void {
+      this.$emit('messageFromChild', this.objects, index);
+    },
+    setObjectsActiveState(allObjects: Array<IObject>): Array<IObject> {
 
-    for(var i=0; i<allObjects.length; i++){
-      let active = true;
-      let image = ObjectClass.getImage(allObjects[i]);
+      for(var i=0; i<allObjects.length; i++){
+        let active = true;
+        let image = ObjectClass.getImage(allObjects[i]);
 
-      if(matchingNames.length > 0) {
-        active = matchingNames.indexOf(allObjects[i].name) > -1;
+        if(this.matchingObjects && this.matchingObjects.length > 0) {
+          active = this.matchingObjects.indexOf(allObjects[i].name) > -1;
+        }
+
+        let front = 'images/transparent.png';
+
+        if(!active) {
+          front = 'images/stop.png';
+        }
+
+        allObjects[i].active = active;
+        allObjects[i].image = image;
+        allObjects[i].front = front;
       }
 
-      let front = 'images/transparent.png';
-
-      if(!active) {
-        front = 'images/stop.png';
-      }
-
-      allObjects[i].active = active;
-      allObjects[i].image = image;
-      allObjects[i].front = front;
+      return allObjects;
     }
-
-    return allObjects;
   }
-}
+});
 </script>

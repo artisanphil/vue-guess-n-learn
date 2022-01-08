@@ -5,10 +5,15 @@
       <div id="your-selection" :class="displayAskButton ? 'your-selection-continue' : 'your-selection-centered'">
         <img v-bind:src="yourSelection" />
       </div>
-      <div id="ask" class="my-2" v-show="displayAskButton">
-        <button @click="computerGuess()" class="m-0 text-sm swal2-confirm swal2-styled">
-          Continue
-        </button>
+        <div v-show="displayAskButton">
+          <div v-if="matchingObjectsCount > 1" id="ask" class="my-2">
+            <button @click="computerGuess()" class="m-0 text-sm swal2-confirm swal2-styled">
+              Continue
+            </button>
+          </div>
+          <div v-else>
+            Click the remaining character in order to win!
+          </div>  
       </div>
     </div>
   </div>  
@@ -66,11 +71,13 @@ export default defineComponent({
   props: {
     yourSelection: String,
     displayAskButton: Boolean,
+    matchingObjectsCount: Number,
   },
   data() {
     return {
       confirmButtonDisabled: false,
-      spanish: localStorage.getItem('learn-language') === 'es_es'
+      spanish: localStorage.getItem('learn-language') === 'es_es',
+      remainingObjectsCount: 24
     };
   },
   methods: {
