@@ -4,6 +4,7 @@ import ChooseObject from '../views/ChooseObject.vue'
 import AskQuestion from '../views/AskQuestion.vue'
 import PickAttribute from '../views/PickAttribute.vue'
 import GameOver from '../views/GameOver.vue'
+import SessionTimeout from '../views/SessionTimeout.vue'
 import { get } from "../helpers/http";
 
 async function redirectIfNoObjectSelected (to, from, next) {
@@ -72,7 +73,13 @@ const routes: Array<RouteRecordRaw> = [
     name: 'GameOver',
     component: GameOver,
     beforeEnter: redirectIfNoObjectSelected
+  },
+  {
+    path: '/session-timeout',
+    name: 'SessionTimeout',
+    component: SessionTimeout,
   }
+
 ]
 
 const router = createRouter({
