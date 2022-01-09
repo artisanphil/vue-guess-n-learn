@@ -162,6 +162,7 @@ export default class Home extends Vue {
     await get<string>("/api/learn-language/" + languageCode);
   }
   async selectLanguage(languageCode: string): Promise<void> {
+    localStorage.removeItem('objectSelected');
     localStorage.setItem('learn-language', languageCode);
     await this.saveLanguage(languageCode);
     router.push("choose-object");

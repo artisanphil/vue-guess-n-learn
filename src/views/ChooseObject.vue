@@ -99,7 +99,7 @@ export default class ChooseObject extends Vue {
   protected objectSelectDisabled: boolean = false as boolean;
   protected allObjects: Array<IObject> = [];
   protected matchingObjects: Array<any> = [];
-  protected matchingObjectsCount: number = 0 as number;
+  protected matchingObjectsCount: number = 24 as number;
 
   async created(): Promise<void> {    
     let matchingJSON = this.$route.params.matching;
@@ -111,7 +111,9 @@ export default class ChooseObject extends Vue {
 
     this.allObjects = await get<Array<IObject>>("/api/index");
 
-    if (Object.keys(this.$route.params).length > 0) {
+    let objectSelected = localStorage.getItem('objectSelected') == 'true';
+
+    if (objectSelected || Object.keys(this.$route.params).length > 0) {
       window.scrollTo(0,document.body.scrollHeight);
       let objectSelected = await get<IObject>("/api/select");
 
@@ -196,6 +198,7 @@ export default class ChooseObject extends Vue {
       if (result.isConfirmed) {
         post<any>("/api/select", data).then(() => {
             localStorage.removeItem('qNumber');
+            localStorage.setItem('objectSelected', 'true');
             this.yourSelection = ObjectClass.getImage(object);
             this.characterSelected = true;
             this.displayCommand = false;
