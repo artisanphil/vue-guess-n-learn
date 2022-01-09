@@ -96,6 +96,14 @@ export default defineComponent({
   methods: {
     async questionSelected(data: any): Promise<void> {
       let response = await post<any>("/api/user-guess", data);
+
+      if(response.length === 0)
+      {
+            router.push('/session-timeout');
+            throw new Error("response is empty");
+      }
+
+
       let answer = response.correct ? response.Yes : response.No;
       let answerSentence = data.sentenceAnswer + '<br><br>'
         + '<div style="display: inline-flex;"><div><img src="/images/icon.png" style="width: 40px;"></div>'

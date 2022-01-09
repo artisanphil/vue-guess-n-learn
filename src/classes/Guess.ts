@@ -3,6 +3,7 @@ import { IComputerGuess } from "../interfaces/IComputerGuess";
 import Swal from 'sweetalert2'
 import { IObject } from "../interfaces/IObject";
 import ObjectClass from "../classes/ObjectClass";
+import router from "@/router";
 
 class Guess {
     async getComputerQuestion(count: number, question?: IComputerGuess): Promise<IComputerGuess> {
@@ -23,6 +24,14 @@ class Guess {
     async displayGuessDialog(question: IComputerGuess): Promise<boolean>
     {
       const objectSelected = await get<IObject>("/api/select");
+
+      if(Object.keys(objectSelected).length == 0)
+      {
+            router.push('/session-timeout');
+
+            throw new Error("objectSelected is empty");
+      }
+
       let dialogButtons = Swal.mixin({
           showCancelButton: true,
           confirmButtonText: question.Yes,
