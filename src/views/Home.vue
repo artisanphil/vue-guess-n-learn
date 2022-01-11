@@ -8,11 +8,12 @@
 
         <div id=description>
           <p>Like the game "Guess Who", but for language learning</p>
-        </div>
 
-        <div id=detail><p>Play a game against Lingua the clever cockatoo,</p>
-                      <p>by asking questions in the language you are learning.</p>
+          <img src="images/overview.png" class="inline">
+          <br />
+          <router-link to="/about" class="text-sm underline">Learn more</router-link>
         </div>
+      
         <div id=selectLangaugeText>Select the language you want to learn</div>
         <div id=selectLanguage class="flex flex-wrap">
           <div>
@@ -79,16 +80,7 @@
   #description {
     font-weight: bold;
     font-size: 1.5rem;
-    margin-bottom: 3vh;
-  }
-
-  #detail {
-    margin: 0 auto;
-    padding: 3px;
-    width: 90%;
-    max-width: 600px;
-    font-size: 1.2rem;
-    margin-bottom: 5vh;
+    margin-bottom: 1vh;
   }
 
   #selectLangaugeText {

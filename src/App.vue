@@ -18,7 +18,8 @@
     ">
       Contact
     </a> |
-    <router-link to="/terms_privacy">Terms / Privacy</router-link>
+    <router-link to="/terms_privacy">Terms / Privacy</router-link> |
+     <router-link to="/about">About</router-link>
   </div>
 </template>
 
