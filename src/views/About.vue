@@ -51,7 +51,8 @@
 
     <br><br>    
     </div>
-    <router-link to="/" class="underline">Play now!</router-link>
+    <a href="/" class="underline" :key="$route.fullPath">Play now!</a>
+    
   </div>
 </template>
 
