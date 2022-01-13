@@ -11,7 +11,7 @@
 
           <img src="images/overview.png" class="inline">
           <br />
-          <router-link to="/about" class="text-sm underline">Learn more</router-link>
+          <router-link to="/howto" class="text-base underline">How to play</router-link>
         </div>
       
         <div id=selectLangaugeText>Select the language you want to learn</div>
@@ -35,15 +35,7 @@
           </figure>
           </div>
         </div>
-        <div id=stayinformed>
-          <hr>
-          <br />
-          <h3>Stay informed on new features</h3>
-          <p>We have many more things planned, for instance:</p>
-          <p>Android/iOS app, leaderboard, more languages, other things to guess, etc. </p>
-          <p class=signup><a href="https://twitter.com/AskLingua" target="_blank">Follow AskLingua on Twitter</a> or
-          <a href="https://asklingua.us20.list-manage.com/subscribe?u=33a92fb170de7e1d490b68911&id=39ff1526de" target="_blank">subscribe to the newsletter.</a></p>
-        </div>
+        <br><br>
     </main>
 </template>
 
