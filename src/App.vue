@@ -3,23 +3,9 @@
     <router-view/>
   </div>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <a
-      href="javascript:void(
-        window.open(
-          'https://form.jotform.com/213145745724355',
-          'blank',
-          'scrollbars=yes,
-          toolbar=no,
-          width=700,
-          height=500'
-        )
-      )
-    ">
-      Contact
-    </a> |
+    <a href="/">Home</a> |
     <router-link to="/terms_privacy">Terms / Privacy</router-link> |
-     <router-link to="/about">About</router-link>
+     <router-link to="/about">About / Contact</router-link>
   </div>
 </template>
 
