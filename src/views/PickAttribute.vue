@@ -32,7 +32,7 @@ export default defineComponent({
   },
   created(): void {
     Swal.fire({
-      title: "Your turn to ask",
+      title: "Your turn to ask Lingua",
       text: 'Please select one of the images'
     });
   },

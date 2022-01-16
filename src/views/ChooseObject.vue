@@ -123,8 +123,8 @@ export default class ChooseObject extends Vue {
       this.displayCommand = false;
     } else {
       Swal.fire({
-        title: "Your turn",
-        text: 'Please choose a character for Lingua to guess'
+        title: "You choose first",
+        html: 'Please choose a character for Lingua <img src="/images/icon.png" style="display:inline-flex; width: 30px;" /> to guess'
       });
     }
   }
@@ -190,7 +190,7 @@ export default class ChooseObject extends Vue {
     const data = { selection: name };
     let image = ObjectClass.getImage(object)
     await Swal.fire({
-      title: "Your selection",
+      title: "You have chosen",
       html: '<img src="' + image + '" style="margin:auto; height: 40vh;">',
       showCancelButton: true,
       reverseButtons: true,

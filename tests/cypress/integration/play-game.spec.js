@@ -34,7 +34,7 @@ function selectCharacter()
 
     cy.get('#Liam').click();
 
-    cy.get('.swal2-popup').should('include.text', 'Your selection');
+    cy.get('.swal2-popup').should('include.text', 'You have chosen');
     cy.get('#swal2-html-container').find('img').should('have.attr', 'src').should('include','Liam.png');
   });
 }
