@@ -137,6 +137,11 @@ export default class ChooseObject extends Vue {
       return;
     }
 
+    //user wins
+    if(this.matchingObjectsCount == 1) {
+      return this.guessObject(name);
+    }
+
     if (!this.characterSelected) {
       if (this.objectSelectDisabled) return;
 
