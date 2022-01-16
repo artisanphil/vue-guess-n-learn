@@ -17,7 +17,6 @@
           <textarea readonly v-model="answer" id=answertext class="md:text-2xl text-base" />
         </div>
         <div>
-          ?<br />
           <img src="images/rubber.png" alt="rubber" id=rubber @click="erase()" />
         </div>
       </div>
@@ -78,7 +77,7 @@ export default defineComponent({
         return answer[0];
     },
     select(word: string): void {
-      if (this.answer.length > 0) {
+      if (this.answer.length > 0 && word != '?') {
         this.answer += " ";
       }
       this.answer += word;
@@ -91,7 +90,7 @@ export default defineComponent({
         let input = document.getElementById('answertext') as HTMLInputElement;
         let data = {
           chosenAttribute: this.attributeKey,
-          answerSentence: input.value.trim() + '?'
+          answerSentence: input.value.trim()
         };
         let response = await post<any>("/api/user-guess/verify-sentence", data);
 
