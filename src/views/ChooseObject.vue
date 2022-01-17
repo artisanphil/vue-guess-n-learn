@@ -143,9 +143,7 @@ export default class ChooseObject extends Vue {
     }
 
     if (!this.characterSelected) {
-      if (this.objectSelectDisabled) return;
-
-      this.objectSelectDisabled = true;
+      if (this.objectSelectDisabled) return;      
       this.displaySelection(name, object);
     } else {
       this.readyToGuessPopup(name);
@@ -201,6 +199,7 @@ export default class ChooseObject extends Vue {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
+        this.objectSelectDisabled = true;
         post<any>("/api/select", data).then(() => {
             localStorage.removeItem('qNumber');
             localStorage.setItem('objectSelected', 'true');
