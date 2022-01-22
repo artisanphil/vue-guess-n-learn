@@ -2,7 +2,7 @@
 <div  id="container" class="grid w-full">
         <div
           id="objects"
-          class="border hover:shadow-lg"
+          class="border"
           :key="index"
           v-for="(object, index) in objects"
           @click="select(index)"
@@ -18,6 +18,11 @@
 #objects {
   height: 100%;
 }
+
+#objects:hover {
+  box-shadow: 1 1 #0000;
+}
+
 .object {
   background-repeat: no-repeat;
   background-position: center;

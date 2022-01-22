@@ -8,6 +8,12 @@
     <title>AskLingua - Like the game "Guess Who", but for language learning</title>
     <meta name="description" content="Play a game against Lingua, the clever cockatoo. Learn how to ask questions in the language you are learning.">
     <meta name="keywords" content="language learning, game, English, Spanish, ask questions">
+    <script>
+      history.pushState(null, null, location.href);
+      window.onpopstate = function () {
+          history.go(1);
+      };
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFBZ0SSTDX"></script>
     <script>
