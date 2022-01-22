@@ -9,9 +9,14 @@
     >
       <div class="attributeText" v-resize-text="{minFontSize: '12px', maxFontSize: '18px', delay: 200}">
         {{ attribute.name }}
-      </div>
+      </div>      
       <img class="attributeImage inline" v-bind:src="attribute.image" />
     </div>
+    <div id=lastCell>
+      <img src="/images/characters-small.png" @click="viewCharacters()" class="inline mt-2 cursor-pointer">
+      <br>
+      <span @click="viewCharacters()" class="underline cursor-pointer leading-4">View Characters</span>      
+    </div> 
   </div>
 </template>
 
@@ -33,6 +38,10 @@
   .attributeImage {
     height: 11.5vh;
   }
+
+  #lastCell {
+    grid-column-end: -1;
+  }  
 }
 
 @media (orientation: portrait) {
@@ -78,7 +87,11 @@ export default class AttributeList extends Vue {
   }
 
   select(index: number): void {
-    this.$emit("messageFromChild", index);
+    this.$emit("messageFromChild", index, false);
+  }
+
+  viewCharacters(): void {
+    this.$emit("messageFromChild", 0, true);
   }
 }
 </script>
