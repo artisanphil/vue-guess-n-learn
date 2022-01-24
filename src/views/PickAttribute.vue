@@ -54,9 +54,18 @@
   cursor: default;
 }
 
-.modal-content .object img {
-  height: 16vh;
+@media (orientation: landscape) {
+  .modal-content .object img {
+    height: 16vh;
+  }
 }
+
+@media (orientation: portrait) {
+  .modal-content .object img {
+    height: 11vh;
+  }
+}
+
 </style>
 
 <script lang="ts">
