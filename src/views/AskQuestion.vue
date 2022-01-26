@@ -115,11 +115,7 @@ export default defineComponent({
         confirmButtonText: "OK",
       });
 
-      let matchingNames = response.matching.map(function (object: IObject) {
-        return object.name;
-      });
-      let matchingJson = JSON.stringify(matchingNames);
-      router.push({ name: "ChooseObject", params: { matching: matchingJson } });
+      router.push({ name: "ChooseObject" });
     },
     getQuestionType(): string{
       let number = 0;

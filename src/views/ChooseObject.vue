@@ -1,16 +1,9 @@
 <template>
   <main class="container px-8 mx-auto mt-2 lg:px-4">
     <div class="flex" id="objectlist">
-      <ObjectList 
-        :allObjects="allObjects" 
-        :matchingObjects="matchingObjects"
-        @messageFromChild="objectSelected" />
-      <SelectedCharacter
-        v-if="characterSelected"
-        :yourSelection="yourSelection"
-        :displayAskButton="displayAskButton"
-        :matchingObjectsCount="matchingObjectsCount"
-        @messageFromChild="computerGuess"
+      <ObjectList
+        :allObjects="allObjects"
+        @messageFromChild="objectSelected"
       />
     </div>
   </main>
@@ -64,7 +57,6 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import ObjectList from "../components/ObjectList.vue";
-import SelectedCharacter from "../components/SelectedCharacter.vue";
 import Swal from "sweetalert2";
 import { IObject } from "../interfaces/IObject";
 import GuessClass from "../classes/Guess";
@@ -79,18 +71,15 @@ import { IComputerGuess } from "../interfaces/IComputerGuess";
       yourSelection: "",
       characterSelected: false,
       displayAskButton: false,
-      displayCommand: true,     
+      displayCommand: true,
       allObjects: [],
-      matchingObjects: [],
       matchingObjectsCount: 0,
     };
   },
   components: {
     ObjectList,
-    SelectedCharacter,
   },
 })
-
 export default class ChooseObject extends Vue {
   protected yourSelection: string = "" as string;
   protected characterSelected: boolean = false as boolean;
@@ -98,33 +87,51 @@ export default class ChooseObject extends Vue {
   protected displayCommand: boolean = true as boolean;
   protected objectSelectDisabled: boolean = false as boolean;
   protected allObjects: Array<IObject> = [];
-  protected matchingObjects: Array<any> = [];
   protected matchingObjectsCount: number = 24 as number;
 
-  async created(): Promise<void> {    
-    let matchingJSON = this.$route.params.matching;
+  async created(): Promise<void> {
+    let objectResponse = await get<any>("/api/objects");
+    this.allObjects = objectResponse.objects;
+    this.matchingObjectsCount = objectResponse.remaining_count_user;
+    let remainingComputerCount = objectResponse.remaining_count_computer;
 
-    if(matchingJSON) {
-      this.matchingObjects = JSON.parse(matchingJSON.toString());
-      this.matchingObjectsCount = this.matchingObjects.length;
-    }
-
-    this.allObjects = await get<Array<IObject>>("/api/index");
-
-    let objectSelected = localStorage.getItem('objectSelected') == 'true';
+    let objectSelected = localStorage.getItem("objectSelected") == "true";
 
     if (objectSelected || Object.keys(this.$route.params).length > 0) {
-      window.scrollTo(0,document.body.scrollHeight);
-      let objectSelected = await get<IObject>("/api/select");
-
-      this.yourSelection = ObjectClass.getImage(objectSelected);
       this.characterSelected = true;
-      this.displayAskButton = true;
-      this.displayCommand = false;
+
+      if (this.matchingObjectsCount > 1) {
+        let dialogButtons = Swal.mixin({
+          showCancelButton: true,
+          confirmButtonText: "No, continue",
+          cancelButtonText: "Yes",
+        });
+
+        let remainingText = "You: <strong>" + this.matchingObjectsCount + "</strong><br>";
+            remainingText += "Lingua: <strong>" + remainingComputerCount + "</strong><br>"; 
+
+        const dialog = await dialogButtons.fire({
+          width: '400px',
+          title: "Remaining characters",
+          html: remainingText + "<br>Do you want to guess Lingua’s character now?",
+          reverseButtons: true,
+        });
+
+        if (dialog.isConfirmed) {
+          this.computerGuess(0);
+        }
+
+      } else {
+        Swal.fire({
+          title: "Only one left",
+          text: "Click the remaining character in order to win!",
+        });
+      }
     } else {
       Swal.fire({
         title: "You choose first",
-        html: 'Please choose a character for Lingua <img src="/images/icon.png" style="display:inline-flex; width: 30px;" /> to guess'
+        html:
+          'Please choose a character for Lingua <img src="/images/icon.png" style="display:inline-flex; width: 30px;" /> to guess',
       });
     }
   }
@@ -133,40 +140,34 @@ export default class ChooseObject extends Vue {
     let name = objects[index].name;
     let object = objects[index];
 
-    if(!object.active) {
+    if (!object.active) {
       return;
     }
 
     //user wins
-    if(this.matchingObjectsCount == 1) {
+    if (this.matchingObjectsCount == 1) {
       return this.guessObject(name);
     }
 
     if (!this.characterSelected) {
-      if (this.objectSelectDisabled) return;      
+      if (this.objectSelectDisabled) return;
       this.displaySelection(name, object);
     } else {
       this.readyToGuessPopup(name);
     }
   }
 
-  async computerGuess(
-    count: number,
-    question?: IComputerGuess
-  ): Promise<void> {
-    if(count === undefined) {
-      count = 0
+  async computerGuess(count: number, question?: IComputerGuess): Promise<void> {
+    if (count === undefined) {
+      count = 0;
     }
 
-    question = await GuessClass.getComputerQuestion(
-      count,
-      question
-    );    
+    question = await GuessClass.getComputerQuestion(count, question);
 
     let answer = await GuessClass.displayGuessDialog(question);
 
     if (question.choice == "") {
-      router.push({ name: "GameOver", params: { win: 'false' } });
+      router.push({ name: "GameOver", params: { win: "false" } });
       return;
     }
 
@@ -191,7 +192,7 @@ export default class ChooseObject extends Vue {
 
   async displaySelection(name: string, object: IObject): Promise<void> {
     const data = { selection: name };
-    let image = ObjectClass.getImage(object)
+    let image = ObjectClass.getImage(object);
     await Swal.fire({
       title: "You have chosen",
       html: '<img src="' + image + '" style="margin:auto; height: 40vh;">',
@@ -201,13 +202,13 @@ export default class ChooseObject extends Vue {
       if (result.isConfirmed) {
         this.objectSelectDisabled = true;
         post<any>("/api/select", data).then(() => {
-            localStorage.removeItem('qNumber');
-            localStorage.setItem('objectSelected', 'true');
-            this.yourSelection = ObjectClass.getImage(object);
-            this.characterSelected = true;
-            this.displayCommand = false;
-            this.computerSelection();
-        })
+          localStorage.removeItem("qNumber");
+          localStorage.setItem("objectSelected", "true");
+          this.yourSelection = ObjectClass.getImage(object);
+          this.characterSelected = true;
+          this.displayCommand = false;
+          this.computerSelection();
+        });
       }
     });
   }
@@ -215,33 +216,37 @@ export default class ChooseObject extends Vue {
   async computerSelection(): Promise<void> {
     await Swal.fire({
       title: "Lingua's turn to choose",
-      text: 'Lingua is selecting a character for you to guess...',
+      text: "Lingua is selecting a character for you to guess...",
       timer: 3000,
       timerProgressBar: true,
       showConfirmButton: false,
+    }).then(() => {
+      Swal.fire({
+        title: "Lingua has made a choice",
+        html:
+          '<img src="/images/characters/unknown.png" style="margin:auto; height: 40vh;">',
       }).then(() => {
-        Swal.fire({
-          title: 'Lingua has made a choice',
-          html: '<img src="/images/characters/unknown.png" style="margin:auto; height: 40vh;">',
-          }).then(() => {
-              this.computerGuess(0);
-          });
+        this.computerGuess(0);
       });
+    });
   }
 
   async readyToGuessPopup(name: string): Promise<void> {
     await Swal.fire({
       title: `Are you sure "${name}" is the correct character?`,
-      html: '<p style="color:red;">Warning! If you get this wrong you\'ll lose.</p>Click "Continue" to ask more questions.',
+      html:
+        '<p style="color:red;">Warning! If you get this wrong you\'ll lose.</p>Click "Continue" to ask more questions.',
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
       cancelButtonText: "Continue",
       confirmButtonText: "Confirm",
     }).then((result) => {
+
       if (result.isConfirmed) {
         this.guessObject(name);
-      } else {
+      } 
+      if (result.dismiss === Swal.DismissReason.cancel) {
         this.computerGuess(0);
       }
     });
