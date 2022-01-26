@@ -43,7 +43,7 @@
     <br>
     <img src="/images/help/continue.png">
     <br>
-    7) Click on "Continue", answer and ask questions until there is only one character left.
+    7) Continue answering and asking questions until there is only one character left.
     At that point, click on the character and you win. Be careful, Lingua might guess first who your character is!
 
     <br><br>    

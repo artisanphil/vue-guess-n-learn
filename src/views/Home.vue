@@ -19,19 +19,19 @@
           <div>
           <figure>
               <img id="en_us" class=flag src="images/languages/en_us.png" @click="selectLanguage('en_us')" />
-              <figcaption>American English</figcaption>
+              <figcaption @click="selectLanguage('en_us')">American English</figcaption>
           </figure>
           </div>
           <div>
           <figure>
             <img id="en_uk" class=flag src="images/languages/en_uk.png" @click="selectLanguage('en_uk')" />
-              <figcaption>British English</figcaption>
+              <figcaption @click="selectLanguage('en_uk')">British English</figcaption>
           </figure>
           </div>
           <div>
           <figure>
             <img id="en_uk" class=flag src="images/languages/es_es.png" @click="selectLanguage('es_es')" />
-              <figcaption>Spanish</figcaption>
+              <figcaption @click="selectLanguage('es_es')">Spanish</figcaption>
           </figure>
           </div>
         </div>
@@ -93,6 +93,10 @@
     cursor: pointer;
     width: 60px;
     margin: 0 auto;
+  }
+
+  #selectLanguage figcaption {
+    cursor: pointer;
   }
 
   #stayinformed {

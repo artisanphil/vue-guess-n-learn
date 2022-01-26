@@ -81,7 +81,6 @@ export default defineComponent({
   name: "ObjectList",
   props: {
     allObjects: Array,
-    matchingObjects: Array,
   },
   data() {
     return {
@@ -100,12 +99,8 @@ export default defineComponent({
     setObjectsActiveState(allObjects: Array<IObject>): Array<IObject> {
 
       for(var i=0; i<allObjects.length; i++){
-        let active = true;
         let image = ObjectClass.getImage(allObjects[i]);
-
-        if(this.matchingObjects && this.matchingObjects.length > 0) {
-          active = this.matchingObjects.indexOf(allObjects[i].name) > -1;
-        }
+        let active = allObjects[i]['active'];
 
         let front = 'images/transparent.png';
 
@@ -113,7 +108,6 @@ export default defineComponent({
           front = 'images/stop.png';
         }
 
-        allObjects[i].active = active;
         allObjects[i].image = image;
         allObjects[i].front = front;
       }

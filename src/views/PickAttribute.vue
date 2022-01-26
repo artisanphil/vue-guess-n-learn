@@ -8,8 +8,7 @@
     <div class=modal v-if="showObjectsModal">
       <div class="modal-content">        
         <ObjectList v-show="showObjects"
-          :allObjects="allObjects" 
-          :matchingObjects="matchingObjects" />
+          :allObjects="allObjects" />
 
           <button @click="closeDisplayObjects()" class="mt-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded">
                     Close
@@ -85,7 +84,6 @@ export default defineComponent({
       image: "",
       showObjects: false,
       allObjects: [],
-      matchingObjects: [],
       showObjectsModal: false,
     };
   },
@@ -117,8 +115,8 @@ export default defineComponent({
     },
     async displayObjects(): Promise<void> {            
       this.showObjectsModal = true;
-      this.matchingObjects = await get<Array<any>>("/api/remaining-objects");
-      this.allObjects = await get<Array<IObject>>("/api/index");      
+      let objectResponse = await get<any>("/api/objects");
+      this.allObjects = objectResponse.objects; 
     },
     closeDisplayObjects(): void {
       this.showObjectsModal = false;
