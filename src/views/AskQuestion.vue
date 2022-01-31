@@ -109,13 +109,15 @@ export default defineComponent({
         + '<div style="display: inline-flex;"><div><img src="/images/icon.png" style="width: 40px;"></div>'
         + '<div style="align-self: end; margin-left: 5px; margin-bottom: 5px;"><h3>' + answer + '</h3></div></div>';
 
-      Swal.fire({
+      const dialog = Swal.fire({
         title: "You asked:",
         html: answerSentence,
         confirmButtonText: "OK",
       });
 
-      router.push({ name: "ChooseObject" });
+      if ((await dialog).isConfirmed) {
+        router.push({ name: "ChooseObject" });
+      }
     },
     getQuestionType(): string{
       let number = 0;

@@ -2,7 +2,7 @@
   <div id="content">
     <router-view/>
   </div>
-  <div id="nav">
+  <div id="nav" v-show="displayNav">
     <a href="/">Home</a> |
     <router-link to="/terms_privacy">Terms / Privacy</router-link> |
      <router-link to="/about">About / Contact</router-link>
@@ -70,3 +70,27 @@
   white-space: nowrap;
 }
 </style>
+
+
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+
+ @Options({
+  data: () => {
+      return {
+        displayNav: true,
+      }
+  }
+})
+
+export default class App extends Vue {
+  protected displayNav: boolean = true as boolean;
+
+  created(): void {
+    if(localStorage.getItem('app-version') == 'true') {
+      this.displayNav = false;
+    }
+  }
+}
+
+</script>
