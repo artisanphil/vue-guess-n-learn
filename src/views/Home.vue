@@ -146,6 +146,15 @@ import router from "../router";
 
 export default class Home extends Vue {
 
+  created(): void {
+    let uri = window.location.search.substring(1); 
+    let params = new URLSearchParams(uri);
+    
+    if(params.get("app") === 'true') {
+      localStorage.setItem('app-version', 'true');
+    }
+  }
+
   async saveLanguage(languageCode: string): Promise<void> {
     await get<string>("/api/learn-language/" + languageCode);
   }

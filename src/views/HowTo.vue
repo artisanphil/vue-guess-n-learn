@@ -48,8 +48,9 @@
 
     <br><br>    
     </div>
-    <a href="/" class="underline" :key="$route.fullPath">Play now!</a>
-    
+    <div style="text-align:center;">
+      <a href="/" class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded" :key="$route.fullPath">Play now!</a>
+    </div>
   </div>
 </template>
 
