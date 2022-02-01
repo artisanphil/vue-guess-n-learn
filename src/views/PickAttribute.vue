@@ -16,7 +16,7 @@
       </div>  
     </div> 
 
-      <div class=mt-5>
+      <div class=mt-5 v-show="displayAd">
         Ad: <a href="https://academy.mosalingua.com/mosaweb/?ref=982" class="text-red-800 underline" target="_blank">Memorize useful words and phrases with the powerful MosaLearning® method</a>
       </div>
     </div>
@@ -85,6 +85,7 @@ export default defineComponent({
       showObjects: false,
       allObjects: [],
       showObjectsModal: false,
+      displayAd: true,
     };
   },
   components: {
@@ -92,6 +93,10 @@ export default defineComponent({
     ObjectList,
   },
   created(): void {
+    if(localStorage.getItem('app-version') == 'true') {
+      this.displayAd = false;
+    }
+
     Swal.fire({
       title: "Your turn to ask Lingua",
       text: 'Please select one of the images'

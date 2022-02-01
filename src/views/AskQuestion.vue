@@ -23,7 +23,7 @@
         @messageFromChild="questionSelected"
       />
 
-      <div class=mt-5>
+      <div class=mt-5 v-show="displayAd">
         Ad: <a href="https://www.italki.com/affshare?ref=asklingua" class="text-red-500 underline" target="_blank">Receive feedback from native speakers and professional teachers</a>
       </div>
     </div>
@@ -50,6 +50,7 @@ export default defineComponent({
       displayJumbledSentence: false,
       displayMChoice: false,
       displayGapQuestion: false,
+      displayAd: true,
       questions: [],
       attributeKey: "",
       attributeValue: "",
@@ -63,6 +64,10 @@ export default defineComponent({
     QuestionHeader,
   },
   async created(): Promise<void> {
+    if(localStorage.getItem('app-version') == 'true') {
+      this.displayAd = false;
+    }
+
     this.attributeKey = this.$route.params.attributeKey as string;
     this.attributeValue = this.$route.params.attributeValue as string;
     const imagePath = "/images/character-attributes/";

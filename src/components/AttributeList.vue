@@ -15,12 +15,16 @@
     <div id=lastCell>
       <img src="/images/characters-small.png" @click="viewCharacters()" class="inline mt-2 cursor-pointer">
       <br>
-      <span @click="viewCharacters()" class="underline cursor-pointer leading-4">View Characters</span>      
+      <span id=viewCharacters @click="viewCharacters()" class="underline cursor-pointer leading-4">View Characters</span>      
     </div> 
   </div>
 </template>
 
 <style>
+#viewCharacters {
+  line-height: 1rem !important;
+}
+
 @media (orientation: landscape) {
   #container {
     grid-template-columns: repeat(5, minmax(0, 1fr));

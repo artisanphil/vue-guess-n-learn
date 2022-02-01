@@ -87,7 +87,16 @@ export default class App extends Vue {
   protected displayNav: boolean = true as boolean;
 
   created(): void {
+
     if(localStorage.getItem('app-version') == 'true') {
+      this.displayNav = false;
+    }
+
+    let uri = window.location.search.substring(1); 
+    let params = new URLSearchParams(uri);
+    
+    if(params.get("app") === 'true') {
+      localStorage.setItem('app-version', 'true');
       this.displayNav = false;
     }
   }
