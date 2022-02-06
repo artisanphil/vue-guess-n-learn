@@ -7,15 +7,19 @@
         Play a game against Lingua the clever cockatoo, by asking questions in the language you are learning.</p>
 
     <br>
-    1) Start by choosing the language you want to learn.
-    <br><br>
+    1) Choose language
+    <br>
+    <img src="/images/help/language-selection.png">
+    <br>
     2) Select a character for Lingua to guess
     <br>
     <img src="/images/help/choose-object.png">
     <br>
-    3) Lingua will select a character for you to guess and then ask a question
-    about your character in the language you are learning. Can you understand the question? 
-    In this case Lingua is asking if Alexander has ginger hair (which he hasn't, so click "No").
+    3) Now Lingua chooses a character.
+    <br>
+    <img src="/images/help/lingua-choice.png">
+    <br>
+    4) Lingua asks a question.    
     <br>
     <img src="/images/help/ask-question.png">
     <br>
@@ -55,6 +59,11 @@
 </template>
 
 <style>
+ img {
+   border-color: #EEEEEE;
+   border-width: 1px;
+   border-style: solid;
+ }
 
  #about {
     max-width: 800px;
