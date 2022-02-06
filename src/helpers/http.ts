@@ -17,7 +17,7 @@
       query = '?' + params.map(e => e.join('=')).join('&');
     }
 
-    const response = await fetch(process.env.VUE_APP_BACKEND + url + query, {
+    const response = await fetch(getBackendUrl() + url + query, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@
     request: any,
     body: any
   ): Promise<T> {
-    const response = await fetch(process.env.VUE_APP_BACKEND + request, {
+    const response = await fetch(getBackendUrl() + request, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -47,4 +47,13 @@
     });
 
     return await response.json();
+  }
+
+  function getBackendUrl(): string
+  {
+    if(window.location.hostname == 'localhost') {
+        return 'http://localhost';
+    }
+
+    return 'https://www.asklingua.com';
   }
