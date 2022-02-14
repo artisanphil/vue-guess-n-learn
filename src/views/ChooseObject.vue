@@ -74,6 +74,7 @@ import { IComputerGuess } from "../interfaces/IComputerGuess";
       displayCommand: true,
       allObjects: [],
       matchingObjectsCount: 0,
+      yourName: "",
     };
   },
   components: {
@@ -81,6 +82,7 @@ import { IComputerGuess } from "../interfaces/IComputerGuess";
   },
 })
 export default class ChooseObject extends Vue {
+  protected yourName: string = "" as string;
   protected yourSelection: string = "" as string;
   protected characterSelected: boolean = false as boolean;
   protected displayAskButton: boolean = false as boolean;
@@ -128,11 +130,26 @@ export default class ChooseObject extends Vue {
         });
       }
     } else {
-      Swal.fire({
-        title: "You choose first",
-        html:
-          'Please choose a character for Lingua <img src="/images/icon.png" style="display:inline-flex; width: 30px;" /> to guess',
-      });
+      await Swal.fire({
+        title: '<img src="/images/icon.png" style="display:inline-flex; width: 40px; margin-bottom: 10px;" /> Hi, I\'m Lingua',
+        input: 'text',
+        inputLabel: 'What is your name?',
+        inputValue: localStorage.getItem('name') ?? '',
+        showCancelButton: false,
+        inputValidator: (value) => {
+          if (!value) {
+            return 'You need to enter your name'
+          }
+        }
+        }).then((result) => {
+          localStorage.setItem('name', result.value);
+
+          Swal.fire({
+            title: "You choose first",
+            html:
+              'Please choose a character for me to guess',
+          });
+        });
     }
   }
 
@@ -191,7 +208,7 @@ export default class ChooseObject extends Vue {
   }
 
   async displaySelection(name: string, object: IObject): Promise<void> {
-    const data = { selection: name };
+    const data = { selection: name, yourName: localStorage.getItem('name') };
     let image = ObjectClass.getImage(object);
     await Swal.fire({
       title: "You have chosen",

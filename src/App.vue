@@ -69,6 +69,12 @@
 .swal-title {
   white-space: nowrap;
 }
+
+#swal2-input {
+    width: auto;
+    margin-left: 5em;
+    margin-right: 5em;
+}
 </style>
 
 
