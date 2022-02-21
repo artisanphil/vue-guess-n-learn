@@ -7,31 +7,31 @@
         </div>
 
         <div id=description>
-          <p>Like the game "Guess Who", but for language learning</p>
+          <p>{{ $t('description') }}</p>
 
           <img src="images/overview.png" class="inline">
           <br />
-          <router-link to="/howto" class="text-base underline">How to play</router-link>
+          <router-link to="/howto" class="text-base underline">{{ $t('howToPlay') }}</router-link>
         </div>
       
-        <div id=selectLangaugeText>Select the language you want to learn</div>
+        <div id=selectLangaugeText>{{ $t('selectLanguage') }}</div>
         <div id=selectLanguage class="flex flex-wrap">
           <div>
           <figure>
               <img id="en_us" class=flag src="images/languages/en_us.png" @click="selectLanguage('en_us')" />
-              <figcaption @click="selectLanguage('en_us')">American English</figcaption>
+              <figcaption @click="selectLanguage('en_us')">{{ $t('americanEnglish') }}</figcaption>
           </figure>
           </div>
           <div>
           <figure>
             <img id="en_uk" class=flag src="images/languages/en_uk.png" @click="selectLanguage('en_uk')" />
-              <figcaption @click="selectLanguage('en_uk')">British English</figcaption>
+              <figcaption @click="selectLanguage('en_uk')">{{ $t('britishEnglish') }}</figcaption>
           </figure>
           </div>
           <div>
           <figure>
             <img id="en_uk" class=flag src="images/languages/es_es.png" @click="selectLanguage('es_es')" />
-              <figcaption @click="selectLanguage('es_es')">Spanish</figcaption>
+              <figcaption @click="selectLanguage('es_es')">{{ $t('spanish') }}</figcaption>
           </figure>
           </div>
         </div>

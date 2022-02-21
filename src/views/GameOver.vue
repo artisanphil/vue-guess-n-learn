@@ -6,7 +6,6 @@
     <h2 class="text-2xl" v-if="win === 'true'">&#127881; You win! &#129395;</h2>
     <h2 v-else class="text-2xl">You lost &#x1F61E;</h2>
     <button @click="playAgain()" class="swal2-confirm swal2-styled mt-5">Play again</button>
-    <!--
     <p>&nbsp;</p>    
     <h2 class="text-xl">Leaderboard</h2>
     <table border=1 style="max-width: 100%;">
@@ -25,7 +24,6 @@
     </table>
     <br>
     <div v-if="win !== 'true'">You need to win in order for your name to show on the leaderboard.</div>
-    -->
   </div>
 </template>
 

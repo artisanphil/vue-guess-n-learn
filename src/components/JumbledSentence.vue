@@ -21,7 +21,7 @@
         </div>
       </div>
       <button @click="ask()" class="mt-5 text-sm swal2-confirm swal2-styled">
-        Ask
+        {{ $t("Ask") }}
       </button>
     </div>
 </div>
@@ -98,13 +98,13 @@ export default defineComponent({
           this.continue(data.answerSentence);
         } else {
             Swal.fire({
-              title: `<h1 style='color:red;'>Wrong</h1>`,
-              text: "Your answer is wrong!",
+              title: `<h1 style='color:red;'>` + this.$t("Wrong") + `</h1>`,
+              text: this.$t("AnswerIsWrong"),
               showCancelButton: true,
               confirmButtonColor: "#808080",
               cancelButtonColor: "#7367f0",
-              cancelButtonText: 'Try again',
-              confirmButtonText: "Skip",
+              cancelButtonText: this.$t("TryAgain"),
+              confirmButtonText: this.$t("Skip"),
           }).then((result) => {
             if (result.isConfirmed) {
               this.skip();

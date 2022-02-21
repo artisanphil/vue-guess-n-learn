@@ -115,7 +115,7 @@ export default defineComponent({
         + '<div style="align-self: end; margin-left: 5px; margin-bottom: 5px;"><h3>' + answer + '</h3></div></div>';
 
       const dialog = Swal.fire({
-        title: "You asked:",
+        title: this.$t("YouAsked"),
         html: answerSentence,
         confirmButtonText: "OK",
       });
