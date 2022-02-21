@@ -15,7 +15,7 @@
     <div id=lastCell>
       <img src="/images/characters-small.png" @click="viewCharacters()" class="inline mt-2 cursor-pointer">
       <br>
-      <span id=viewCharacters @click="viewCharacters()" class="underline cursor-pointer leading-4">View Characters</span>      
+      <span id=viewCharacters @click="viewCharacters()" class="underline cursor-pointer leading-4">{{ $t("ViewCharacters") }}</span>      
     </div> 
   </div>
 </template>

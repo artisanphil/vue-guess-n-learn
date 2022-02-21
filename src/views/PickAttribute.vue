@@ -11,7 +11,7 @@
           :allObjects="allObjects" />
 
           <button @click="closeDisplayObjects()" class="mt-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded">
-                    Close
+                    {{ $t("Close") }}
           </button>
       </div>  
     </div> 
@@ -98,8 +98,8 @@ export default defineComponent({
     }
 
     Swal.fire({
-      title: "Your turn to ask Lingua",
-      text: 'Please select one of the images'
+      title: this.$t("YourTurnAskLingua"),
+      text: this.$t("SelectImage")
     });
   },
   methods: {

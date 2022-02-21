@@ -1,4 +1,5 @@
 import { get } from "../helpers/http";
+import { i18n } from "../main";
 import { IComputerGuess } from "../interfaces/IComputerGuess";
 import Swal from 'sweetalert2'
 import { IObject } from "../interfaces/IObject";
@@ -14,7 +15,7 @@ class Guess {
         question.choice = question.choice ?? '';
 
         if (count == 1) {
-            const wrong = "<span style=\"color:red;\">Wrong answer!</span><br />";
+            const wrong = "<span style=\"color:red;\">" + i18n.global.t("WrongAnswer") + "</span><br />";
             question.sentence = wrong + question.sentence;
         } 
 
@@ -45,7 +46,7 @@ class Guess {
           questionSentence = question.sentence;
       }
 
-      let popupContent = 'You have chosen<br><div id=your-selection-popup><img src="' + image + '" style="margin:auto; height: 40vh;"/></div>'
+      let popupContent = i18n.global.t("YouHaveChosen") + '<br><div id=your-selection-popup><img src="' + image + '" style="margin:auto; height: 40vh;"/></div>'
        + '<div style="display: inline-flex;"><div><img src="/images/icon.png" style="width: 50px; margin-top: 5px;"></div><div style="align-self: end; margin-left: 5px; margin-bottom: 5px;"><h3>' + questionSentence + '</h3></div></div>';
 
       if(question.choice == '') {
@@ -56,7 +57,7 @@ class Guess {
       }
 
       const dialog = await dialogButtons.fire({
-        title: 'Lingua\'s turn to guess',
+        title: i18n.global.t("LinguaGuessTurn"),
         html: popupContent,
         reverseButtons: true,
       });

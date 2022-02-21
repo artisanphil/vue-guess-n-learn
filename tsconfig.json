@@ -3,6 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "strict": false,
+    "resolveJsonModule": true,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
