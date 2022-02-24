@@ -1,59 +1,57 @@
 <template>
   <div id="about">
-    <h1 class="text-center text-4xl mt-2 mb-2">How to play</h1>
+    <h1 class="text-center text-4xl mt-2 mb-2">{{ $t("howToPlay") }}</h1>
     
     <div id="content">
-      <p>AskLingua is like the game "Guess Who", but for language learning. 
-        Play a game against Lingua the clever cockatoo, by asking questions in the language you are learning.</p>
+      <p>{{ $t("descriptionAskLingua") }} 
+        {{ $t("PlayGameAgainstLingua") }}</p>
 
     <br>
-    1) Choose language
+    1) {{ $t("ChooseLanguage") }}
     <br>
-    <img src="/images/help/language-selection.png">
+    <img v-bind:src="$t('imgLanguageSelection')">
     <br>
-    2) Select a character for Lingua to guess
+    2) {{ $t("HelpSelectCharacter") }}
     <br>
     <img src="/images/help/choose-object.png">
     <br>
-    3) Now Lingua chooses a character.
+    3) {{ $t("HelpLinguaChoice") }}
     <br>
-    <img src="/images/help/lingua-choice.png">
+    <img v-bind:src="$t('imgLinguaChoice')">
     <br>
-    4) Lingua asks a question.    
+    4) {{ $t("HelpLinguaAsks") }}    
     <br>
-    <img src="/images/help/ask-question.png">
+    <img v-bind:src="$t('imgLinguaAsks')">
     <br>
-    4) Now it's your turn to choose an attribute you want to ask about.
+    4) {{ $t("HelpYourTurnToAsk") }}
     <br>
     <img src="/images/help/choose-attribute.png">
     <br>
-    5) Next you will need to ask the question that matches the attribute you picked. You will be shown either
-    a multiple choice question, jumbled sentence or gap question.
+    5) {{ $t("HelpQuestionTypes") }}
     <br><br>
-    <strong>Multiple-Choice:</strong><br>
+    <strong>{{ $t("MultipleChoice" )}}:</strong><br>
     <img src="/images/help/multiple-choice.png">
     <br>
-    <strong>Jumbled sentence:</strong><br>
-    Click on the words to create a sentence. Some of the words are wrong!
-    If you made a mistake, click on the eraser icon behind the textbox to delete the last word you added.
-    <img src="/images/help/jumbled-sentence.png">
+    <strong>{{ $t("JumbledWords") }}:</strong><br>
+    {{ $t("HelpClickWords") }}
+    {{ $t("HelpRemoveWord") }}
+    <img v-bind:src="$t('imgJumbledSentence')">
     <br>
-    <strong>Fill in the blank:</strong><br>
-    <img src="/images/help/gap.png">
+    <strong>{{ $t("FillInTheBlank") }}:</strong><br>
+    <img v-bind:src="$t('imgGap')">
 
     <br><br>
-    6) Lingua will then answer your question and hide all characters that match (or don't match) the attribute 
-    you asked about.
+    6) {{ $t("HelpAnswerAndHide") }}
     <br>
     <img src="/images/help/continue.png">
     <br>
-    7) Continue answering and asking questions until there is only one character left.
-    At that point, click on the character and you win. Be careful, Lingua might guess first who your character is!
+    7) {{ $t("HelpContinue") }}
+    {{ $t("HelpWin") }}    
 
     <br><br>    
     </div>
     <div style="text-align:center;">
-      <a href="/" class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded" :key="$route.fullPath">Play now!</a>
+      <a href="/" class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded" :key="$route.fullPath">{{ $t("PlayNow") }}</a>
     </div>
   </div>
 </template>

@@ -3,9 +3,9 @@
     <router-view/>
   </div>
   <div id="nav" v-show="displayNav">
-    <a href="/">Home</a> |
-    <router-link to="/terms_privacy">Terms / Privacy</router-link> |
-     <router-link to="/about">About / Contact</router-link>
+    <a href="/">{{ $t("Home") }}</a> |
+    <router-link to="/terms_privacy">{{ $t("TermsPrivacy") }}</router-link> |
+     <router-link to="/about">{{ $t("AboutContact") }}</router-link>
   </div>
 </template>
 

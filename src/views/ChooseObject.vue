@@ -135,6 +135,7 @@ export default class ChooseObject extends Vue {
         title: '<img src="/images/icon.png" style="display:inline-flex; width: 40px; margin-bottom: 10px;" /> '
               + translate("IAmLingua", localStorage.getItem('learn-language')),
         input: 'text',
+        inputPlaceholder: this.$t("UseNickname"),        
         inputLabel: translate("whatIsYourName", localStorage.getItem('learn-language')),
         inputValue: localStorage.getItem('name') ?? '',
         showCancelButton: false,

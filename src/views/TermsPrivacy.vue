@@ -70,8 +70,8 @@
         address</li>
     </ul>
 
-    <p>In addition, we may use Google Analytics software to collect information
-      about how you use AskLingua. Google Analytics stores information such
+    <p>In addition, we may use analytics software to collect information
+      about how you use AskLingua. Analytics software stores information such
       as:</p>
 
     <ul>
