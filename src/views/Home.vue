@@ -34,8 +34,14 @@
               <figcaption @click="selectLanguage('es_es')">{{ $t('spanish') }}</figcaption>
           </figure>
           </div>
+        </div>        
+        <br><hr><br>
+        <div class="app">
+          <a href="https://play.google.com/store/apps/details?id=com.asklingua.mob" target="_blank">
+            <img src="images/google_play.png">
+          </a>          
         </div>
-        <br><br>
+        <br>          
     </main>
 </template>
 
@@ -114,6 +120,10 @@
   }
   .signup a {
     text-decoration: underline;
+  }
+
+  .app img {
+    margin: 0 auto;
   }
 
   @media (max-width:480px) {
