@@ -9,7 +9,7 @@
         <div id=description>
           <p>{{ $t('description') }}</p>
 
-          <img src="images/overview.png" class="inline">
+          <img src="images/overview.png" class="inline mt-1">
           <br />
           <router-link to="/howto" class="text-base underline">{{ $t('howToPlay') }}</router-link>
         </div>
@@ -46,7 +46,7 @@
 </template>
 
 <style>
-
+  
   #home {
     /* max-width: 800px; */
     background-color: rgba(230,255,255,.2);
@@ -99,6 +99,7 @@
     cursor: pointer;
     width: 60px;
     margin: 0 auto;
+    margin-bottom: 1vh;
   }
 
   #selectLanguage figcaption {
