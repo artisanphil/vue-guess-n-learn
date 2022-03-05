@@ -36,7 +36,7 @@
           </div>
         </div>        
         <br><hr><br>
-        <div class="app">
+        <div class="app" v-show="displayAppLink">
           <a href="https://play.google.com/store/apps/details?id=com.asklingua.mob" target="_blank">
             <img src="images/google_play.png">
           </a>          
@@ -156,7 +156,13 @@ import { get } from "../helpers/http";
 import router from "../router";
 
 export default class Home extends Vue {
+  protected displayAppLink: boolean = true as boolean;
 
+  async created(): Promise<void> {
+    if(localStorage.getItem('app-version') == 'true') {
+      this.displayAppLink = false;
+    }
+  }
   async saveLanguage(languageCode: string): Promise<void> {
     await get<string>("/api/learn-language/" + languageCode);
   }
