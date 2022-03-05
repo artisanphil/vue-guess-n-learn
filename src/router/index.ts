@@ -37,22 +37,6 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
-  },
-  {
-    path: '/howto',
-    name: 'HowTo',
-    component: () => import('../views/HowTo.vue')
-  },
-  {
-    path: '/terms_privacy',
-    name: 'TermsPrivacy',
-    component: () => import('../views/TermsPrivacy.vue')
-  },
-
-  {
     path: '/choose-object',
     name: 'ChooseObject',
     component: ChooseObject,

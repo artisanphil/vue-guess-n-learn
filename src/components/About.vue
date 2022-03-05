@@ -4,11 +4,9 @@
     
     <div id="content">
       <p>{{ $t("CreatedBy") }}</p>
-      <br>
-      <router-link to="/howto" class="text-base underline">{{ $t("howToPlay") }}</router-link>
       <br><br>
       {{ $t("Feedback") }}: 
-        <a
+        <a class="underline"
       href="javascript:void(
         window.open(
           'https://form.jotform.com/213145745724355',
@@ -37,7 +35,6 @@
 </template>
 
 <style>
-
 a {
   text-decoration: underline;
 }
@@ -46,18 +43,24 @@ a {
     max-width: 800px;
     margin: 2vh auto;
     border-radius: 25px;
-    border: 2px solid #ff8c00;
     color: #A52A2A;
-    padding: 1vh;
     padding-bottom: 5vh;
   }
 
-  #content {
+  .modal #content {
     text-align: left;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
   }
 </style>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "About",
+});
+</script>
