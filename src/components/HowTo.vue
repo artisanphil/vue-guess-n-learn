@@ -47,17 +47,12 @@
     <br>
     7) {{ $t("HelpContinue") }}
     {{ $t("HelpWin") }}    
-
-    <br><br>    
-    </div>
-    <div style="text-align:center;">
-      <a href="/" class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded" :key="$route.fullPath">{{ $t("PlayNow") }}</a>
     </div>
   </div>
 </template>
 
 <style>
- img {
+ #about img {
    border-color: #EEEEEE;
    border-width: 1px;
    border-style: solid;
@@ -67,13 +62,11 @@
     max-width: 800px;
     margin: 2vh auto;
     border-radius: 25px;
-    border: 2px solid #ff8c00;
     color: #A52A2A;
-    padding: 1vh;
-    padding-bottom: 5vh;
+    padding-bottom: 1vh;
   }
 
-  #content {
+  .modal #content {
     text-align: left;
   }
 
@@ -82,3 +75,12 @@
     font-weight: bold;
   }
 </style>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+
+export default defineComponent({
+  name: "HowTo",
+});
+</script>

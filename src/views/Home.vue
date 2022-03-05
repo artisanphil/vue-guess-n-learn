@@ -1,4 +1,15 @@
 <template>
+    <div class=modal v-if="showHowTo">
+      <div class="modal-content">        
+        <HowTo />
+
+          <div style="text-align:center;">
+            <a href="#" @click="closeDisplayHowTo()" class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded" :key="$route.fullPath">{{ $t("PlayNow") }}</a>
+          </div>
+          <br>
+      </div>  
+    </div> 
+
     <main id=home>
         <div id=header>
           <div id=logo>
@@ -11,7 +22,7 @@
 
           <img src="images/overview.png" class="inline mt-1">
           <br />
-          <router-link to="/howto" class="text-base underline">{{ $t('howToPlay') }}</router-link>
+          <span @click="viewHowTo()" class="text-base underline cursor-pointer">{{ $t('howToPlay') }}</span>
         </div>
       
         <div id=selectLangaugeText>{{ $t('selectLanguage') }}</div>
@@ -145,18 +156,25 @@
       margin-left: 5vh;
       margin-right: 5vh;
     }
-
   }
 </style>
 
 
 <script lang="ts">
-import { Vue } from "vue-class-component";
+import { Options, Vue } from "vue-class-component";
+import HowTo from "../components/HowTo.vue";
 import { get } from "../helpers/http";
 import router from "../router";
 
+@Options({
+    components: {
+     HowTo
+  }
+})
+
 export default class Home extends Vue {
   protected displayAppLink: boolean = true as boolean;
+  protected showHowTo: boolean = false as boolean;
 
   async created(): Promise<void> {
     if(localStorage.getItem('app-version') == 'true') {
@@ -171,6 +189,12 @@ export default class Home extends Vue {
     localStorage.setItem('learn-language', languageCode);
     await this.saveLanguage(languageCode);
     router.push("choose-object");
+  }
+  viewHowTo(): void {
+    this.showHowTo = true;
+  }
+  closeDisplayHowTo(): void {
+    this.showHowTo = false;
   }
 }
 </script>

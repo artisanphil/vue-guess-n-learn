@@ -1,11 +1,23 @@
 <template>
+  <div id=modal class=modal v-if="showModal">
+    <div class="modal-content">        
+      <terms-privacy v-if="showTermsPrivacy" />
+      <about v-if="showAbout" />
+
+        <button @click="closeModal()" class="mt-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded">
+                  {{ $t("Close") }}
+        </button>
+        <br><br>
+    </div>  
+  </div> 
+
   <div id="content">
     <router-view/>
   </div>
   <div id="nav" v-show="displayNav">
     <a href="/">{{ $t("Home") }}</a> |
-    <router-link to="/terms_privacy">{{ $t("TermsPrivacy") }}</router-link> |
-     <router-link to="/about">{{ $t("AboutContact") }}</router-link>
+    <span @click="viewTermsPrivacy()" class="navlink cursor-pointer">{{ $t('TermsPrivacy') }}</span> |
+    <span @click="viewAbout()" class="navlink cursor-pointer">{{ $t('AboutContact') }}</span>
   </div>
 </template>
 
@@ -53,6 +65,11 @@
     margin-left: 1em;
 }
 
+.navlink {
+    color: #2c3e50;
+    font-size: 0.8rem;
+}
+
 #nav {
   padding: 2vh 30px 3vh 30px;
 
@@ -75,22 +92,52 @@
     margin-left: 5em;
     margin-right: 5em;
 }
-</style>
 
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10px auto; 
+  padding: 5px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+</style>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import TermsPrivacy from "./components/TermsPrivacy.vue";
+import About from "./components/About.vue";
 
  @Options({
   data: () => {
       return {
         displayNav: true,
+        showModal: false,
+        showHowTo: false,
       }
+  },
+  components: {
+    TermsPrivacy,
+    About
   }
 })
 
 export default class App extends Vue {
   protected displayNav: boolean = true as boolean;
+  protected showModal: boolean = false as boolean;
+  protected showTermsPrivacy: boolean = false as boolean;
+  protected showAbout: boolean = false as boolean;
 
   created(): void {
 
@@ -106,6 +153,20 @@ export default class App extends Vue {
       this.displayNav = false;
     }
   }
-}
 
+  viewTermsPrivacy(): void {
+    this.showModal = true;
+    this.showTermsPrivacy = true;
+  }
+  viewAbout(): void {
+    this.showModal = true;
+    this.showAbout = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.showTermsPrivacy = false;
+    this.showAbout = false;
+  }
+}
 </script>
