@@ -1,6 +1,7 @@
 <template>
   <div id=modal class=modal v-if="showModal">
     <div class="modal-content">        
+      <span @click="closeModal()" class="float-right text-lg cursor-pointer mr-1">&times;</span>
       <terms-privacy v-if="showTermsPrivacy" />
       <about v-if="showAbout" />
 
