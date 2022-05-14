@@ -1,5 +1,5 @@
 <template>
-  <div id="about">
+  <div id="aboutpage">
     <h1 class="text-center text-4xl mt-2 mb-2">{{ $t("AboutAskLingua") }}</h1>
     
     <div id="content">
@@ -39,12 +39,13 @@ a {
   text-decoration: underline;
 }
 
- #about {
+ #aboutpage {
     max-width: 800px;
     margin: 2vh auto;
     border-radius: 25px;
     color: #A52A2A;
     padding-bottom: 5vh;
+    max-height: 400px;
   }
 
   .modal #content {

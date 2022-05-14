@@ -1,12 +1,15 @@
 <template>
-    <div class=modal v-if="showHowTo">
-      <div class="modal-content">        
-        <HowTo />
+    <div class=modal v-if="showModal">
+      <div class="modal-content">     
+        <span @click="closeModal()" class="float-right text-lg cursor-pointer mr-1">&times;</span>   
+        <HowTo v-if="showHowTo" />
+        <ComingNext v-if="showComingNext" />
 
-          <div style="text-align:center;">
-            <a href="#" @click="closeDisplayHowTo()" class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded" :key="$route.fullPath">{{ $t("PlayNow") }}</a>
-          </div>
-          <br>
+        <button @click="closeModal()" class="mt-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded">
+                  {{ $t("Close") }}
+        </button>
+        <br><br>
+
       </div>  
     </div> 
 
@@ -41,10 +44,17 @@
           </div>
           <div>
           <figure>
-            <img id="en_uk" class=flag src="images/languages/es_es.png" @click="selectLanguage('es_es')" />
+            <img id="kr_kr" class=flag src="images/languages/kr_kr.png" @click="selectLanguage('kr_kr')" />
+              <figcaption @click="selectLanguage('kr_kr')">{{ $t('Korean') }}</figcaption>
+          </figure>
+          </div>
+          <div>
+          <figure>
+            <img id="es_es" class=flag src="images/languages/es_es.png" @click="selectLanguage('es_es')" />
               <figcaption @click="selectLanguage('es_es')">{{ $t('spanish') }}</figcaption>
           </figure>
           </div>
+
         </div>        
         <br><hr><br>
         <div class="app" v-show="displayAppLink">
@@ -103,7 +113,7 @@
   }
   #selectLanguage > div {
     margin: 1vh auto;
-    width: 33%;
+    width: 25%;
   }
 
   #selectLanguage img {
@@ -163,18 +173,22 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import HowTo from "../components/HowTo.vue";
+import ComingNext from "../components/ComingNext.vue";
 import { get } from "../helpers/http";
 import router from "../router";
 
 @Options({
     components: {
-     HowTo
+     HowTo,
+     ComingNext
   }
 })
 
 export default class Home extends Vue {
   protected displayAppLink: boolean = true as boolean;
+  protected showModal: boolean = false as boolean;
   protected showHowTo: boolean = false as boolean;
+  protected showComingNext: boolean = false as boolean;
 
   async created(): Promise<void> {
     if(localStorage.getItem('app-version') == 'true') {
@@ -191,10 +205,17 @@ export default class Home extends Vue {
     router.push("choose-object");
   }
   viewHowTo(): void {
+    this.showModal = true;
     this.showHowTo = true;
   }
-  closeDisplayHowTo(): void {
+  viewNextLanguage(): void {
+    this.showModal = true;
+    this.showComingNext = true;
+  }
+  closeModal(): void {
+    this.showModal = false;
     this.showHowTo = false;
+    this.showComingNext = false;
   }
 }
 </script>
