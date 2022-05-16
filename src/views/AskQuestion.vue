@@ -23,6 +23,10 @@
         @messageFromChild="questionSelected"
       />
 
+      <div class=mt-5 v-show="displayAd">
+        <a href="https://lingopie.com/?ref=lc&tap_s=2842746-6a7e40&tap_a=99853-a138f9" target="_BLANK" rel="nofollow"><img src="https://static.tapfiliate.com/6107f758d5f61204942519.png?a=99853-a138f9&s=2842746-6a7e40" border="0" style="width: 250px; margin: 10px auto"></a>
+      </div>
+
     </div>
   </main>
 </template>
