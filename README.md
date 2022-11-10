@@ -1,6 +1,6 @@
 ## Ask Lingua, Vue Frontend
 
-This games is based on Guess Who, but for language learning.
+This game is based on Guess Who, but for language learning.
 
 ![Overview](/public/images/screenshots/home.png)
 
